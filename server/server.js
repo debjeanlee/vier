@@ -1,5 +1,3 @@
-const Category = require('./models/category.models')
-
 require('dotenv').config();
 
 const express = require('express');
@@ -12,7 +10,6 @@ require('./config/mongo.config');
 app.use(express.urlencoded({ extended: true }));
 app.use('/', express.static('dist'));
 app.use(express.json());
-// app.use(cors({ origin: 'http://localhost:3000' }));
 
 /**
  * @routes
