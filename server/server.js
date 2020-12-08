@@ -1,5 +1,3 @@
-const Category = require('./models/category.models')
-
 require('dotenv').config();
 
 const express = require('express');
@@ -12,12 +10,16 @@ require('./config/mongo.config');
 app.use(express.urlencoded({ extended: true }));
 app.use('/', express.static('dist'));
 app.use(express.json());
-// app.use(cors({ origin: 'http://localhost:3000' }));
 
 /**
  * @routes
  * all routes should start with '/api'
  */
+
+// categories
+app.use('/api/categories', require('./routes/categories.routes'));
+// dishes
+app.use('/api/dishes', require('./routes/dishes.routes'));
 
 app.get('*', (req, res) => {
   res.sendStatus(404);
