@@ -29,7 +29,7 @@ function Home() {
         <p>7 items</p>
       </div>
       <div className="arrow-div">
-        <FontAwesomeIcon icon={faChevronRight} />
+        <FontAwesomeIcon icon={faChevronRight} className="fa-arrow" />
       </div>
     </div>
   ));

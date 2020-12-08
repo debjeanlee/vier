@@ -11,7 +11,7 @@ function App() {
       <div className="main-div">
         <div className="topbar">
           <div>Home</div>
-          <FontAwesomeIcon icon={faShoppingBasket} />
+          <FontAwesomeIcon icon={faShoppingBasket} className="fa-shopping" />
         </div>
         <div className="backdrop-solid" />
         <Switch>

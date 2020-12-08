@@ -11,6 +11,10 @@ body {
   margin: 20px 0;
   height: 50px;
   width: 100%;
+
+  .fa-shopping {
+    color: #b7b7b7;
+  }
 }
 
 .backdrop-solid {
@@ -90,6 +94,9 @@ body {
           box-shadow: 2px 4px 15px 0 rgba(53, 53, 53, 0.2),
           3px 6px 20px 0 rgba(79, 79, 79, 0.07);
 
+          .fa-arrow {
+            color: #e64253;
+          }
         }
       }
     }
