@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const dishSchema = new Schema(
     {
         name: { type: String, required: true },
-        price: { type: Number, required: true },
+        price: { type: String, required: true },
         description: String,
         img: String,
         category: {
