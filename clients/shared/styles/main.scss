@@ -16,8 +16,8 @@ body {
 .backdrop-solid {
   position: fixed;
   z-index: -4;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   background-color: #ec3a4d;
   width: 35vw;
   height: 200vh;
@@ -41,15 +41,16 @@ body {
       align-items: center;
 
       .category-card {
+        position: relative;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         border-radius: 20px;
         width: 80%;
         height: 100px;
-        margin: 10px;
+        margin: 13px 10px;
         background-color: #fafafa;
-        box-shadow: 2px 2px 5px rgba(53, 53, 53, 0.2),
+        box-shadow: 2px 2px 5px rgba(53, 53, 53, 0.15),
         1px 1px 15px 2px rgba(79, 79, 79, 0.07);
 
         .category-info {
@@ -58,13 +59,14 @@ body {
           margin: 0 60px;
 
           h2 {
-          font-family: 'Ultra', serif;
-          letter-spacing: 2px;
-          font-weight: 400;
-          font-size: 22px;
-          padding: 0;
-          margin: 0;
-        }
+            font-family: 'Ultra', serif;
+            letter-spacing: 2px;
+            font-weight: 400;
+            font-size: 22px;
+            padding: 0;
+            margin: 0 0 5px 0;
+          }
+
           p {
             font-family: 'Open Sans', sans-serif;
             font-size: 12px;
@@ -75,7 +77,20 @@ body {
           }
         }
 
+        .arrow-div {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #f6f6f6;
+          right: -20px;
+          width: 40px;
+          height: 40px;
+          border-radius: 40px;
+          box-shadow: 2px 4px 15px 0 rgba(53, 53, 53, 0.2),
+          3px 6px 20px 0 rgba(79, 79, 79, 0.07);
 
+        }
       }
     }
   }
