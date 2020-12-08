@@ -1,3 +1,5 @@
+const Category = require('./models/category.models')
+
 require('dotenv').config();
 
 const express = require('express');
@@ -16,6 +18,10 @@ app.use(express.json());
  * @routes
  * all routes should start with '/api'
  */
+
+app.get('*', (req, res) => {
+  res.sendStatus(404);
+});
 
 // // app.use('/api/one', require("./routes/one.routes"));
 // // app.use('/api/two', require("./routes/two.routes"));
