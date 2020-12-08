@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const passport = require('./configs/passport.config');
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT;
 const app = express();
 
 require('./configs/mongo.config');
