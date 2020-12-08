@@ -1,17 +1,17 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
   entry: {
-    index: "./clients/customers/index.js",
-    crews: "./clients/crews/index.js",
-    kitchen: "./clients/kitchen/index.js",
+    index: './clients/customer/index.js',
+    service: './clients/service/index.js',
+    kitchen: './clients/kitchen/index.js',
   },
   output: {
-    filename: "static/js/[name].bundle.js",
-    path: path.join(__dirname, "dist"),
+    filename: 'static/js/[name].bundle.js',
+    path: path.join(__dirname, 'dist'),
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
@@ -20,13 +20,13 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
           },
         ],
       },
       {
         test: /\.(png|jp(e*)g|svg)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
