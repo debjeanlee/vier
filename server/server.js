@@ -17,9 +17,7 @@ app.use(express.json());
  */
 
 // categories
-app.use('/api/categories', require('./routes/categories.routes'));
-// dishes
-app.use('/api/dishes', require('./routes/dishes.routes'));
+app.use('/api', require('./routes/index.routes'));
 
 app.get('*', (req, res) => {
   res.sendStatus(404);
