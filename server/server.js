@@ -16,6 +16,11 @@ app.use(express.json());
  * all routes should start with '/api'
  */
 
+// categories
+app.use('/api/categories', require('./routes/categories.routes'));
+// dishes
+app.use('/api/dishes', require('./routes/dishes.routes'));
+
 app.get('*', (req, res) => {
   res.sendStatus(404);
 });
