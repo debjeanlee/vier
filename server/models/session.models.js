@@ -13,15 +13,18 @@ const sessionSchema = new Schema({
   active: { type: Boolean, default: true },
   orders: [
     {
-      dish: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Dish',
-      },
-      quantity: { type: Number, default: 1, required: true },
-      progress: { type: Number, default: 0 },
+      items: [
+        {
+          dish: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Dish',
+          },
+          quantity: { type: Number, default: 1, required: true },
+          progress: { type: Number, default: 1, max: 5 },
+        },
+      ],
       totalCost: Number,
       orderedAt: { type: Date, default: Date.now },
-      overallDelivered: { type: Number, default: 0 },
     },
   ],
   cart: [
