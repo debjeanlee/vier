@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const sessionSchema = new Schema({
-  sessionId: { type: String, required: true, unique: true },
+  sessionId: { type: Number, required: true, unique: true },
   startTime: { type: Date, default: Date.now },
   endTime: { type: Date, default: Date.now },
   table: {
@@ -21,7 +21,7 @@ const sessionSchema = new Schema({
       progress: { type: Number, default: 0 },
       totalCost: Number,
       orderedAt: { type: Date, default: Date.now },
-      overallDelivered: { type: Number, default: 0},
+      overallDelivered: { type: Number, default: 0 },
     },
   ],
   cart: [
