@@ -1,22 +1,15 @@
 const router = require('express').Router();
 
 const Session = require('../models/session.models');
+const Table = require('../models/table.models');
 
-// -------- get active sessions --------- need table schema?
-// router.get('/active', async (req, res) => {
-//   const active = await Session.find({ active: 'true' });
-//   res.status(200).json({ active });
-// });
-
+// create new session & assign to table, takes table number in body, need to update table w session
 router.post('/new', async (req, res) => {
   try {
     const data = req.body;
+    const selectedTable = await Table.findOne({ tableNo: data.tableNo });
     const length = await Session.countDocuments({}, (err, count) => count);
     const sessionId = length + 1;
-    const sessionData = {
-      table: data.table,
-      sessionId,
-    };
     const newSession = new Session(sessionData);
     await newSession
       .save()
