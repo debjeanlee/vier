@@ -10,7 +10,7 @@ router.post('/new', async (req, res) => {
     const selectedTable = await Table.findOne({ tableNo: data.tableNo });
     const length = await Session.countDocuments({}, (err, count) => count);
     const sessionId = length + 1;
-    const newSession = new Session(sessionData);
+    const newSession = new Session({ sessionId });
     await newSession
       .save()
       .then(() => {
