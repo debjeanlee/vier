@@ -5,16 +5,13 @@ const { Schema } = mongoose;
 const sessionSchema = new Schema({
   sessionId: { type: Number, required: true, unique: true },
   startTime: { type: Date, default: Date.now },
-  endTime: { type: Date, default: Date.now },
-  table: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Table',
-  },
+  endTime: { type: Date, default: undefined },
   active: { type: Boolean, default: true },
   orders: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Order',
+      required: false,
     },
   ],
   cart: [
@@ -24,6 +21,7 @@ const sessionSchema = new Schema({
         ref: 'Dish',
       },
       quantity: { type: Number, default: 1, required: true },
+      required: false,
     },
   ],
 });
