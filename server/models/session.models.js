@@ -11,6 +11,7 @@ const sessionSchema = new Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Order',
+      required: false,
     },
   ],
   cart: [
@@ -20,6 +21,7 @@ const sessionSchema = new Schema({
         ref: 'Dish',
       },
       quantity: { type: Number, default: 1, required: true },
+      required: false,
     },
   ],
 });

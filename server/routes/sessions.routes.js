@@ -1,27 +1,19 @@
 const router = require('express').Router();
 
 const Session = require('../models/session.models');
-const Table = require('../models/table.models');
+// const Table = require('../models/table.models');
 
 // create new session & assign to table, takes table number in body, need to update table w session
 router.post('/new', async (req, res) => {
   try {
-    const data = req.body;
-    const selectedTable = await Table.findOne({ tableNo: data.tableNo });
-    const length = await Session.countDocuments({}, (err, count) => count);
-    const sessionId = length + 1;
-    const newSession = new Session({ sessionId });
-    await newSession
-      .save()
-      .then(() => {
-        res.status(201).json({ message: 'Session created' });
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(401).json({ message: 'Something went wrong' });
-      });
+    let count = await Session.countDocuments();
+    count += 1;
+    const session = new Session({ sessionId: count });
+    await session.save().then(() => {
+      res.status(201).json({ message: 'Session created' });
+    });
   } catch (error) {
-    res.status(401).json({ message: 'Something went wrong' });
+    res.status(401).json(error);
   }
 });
 
