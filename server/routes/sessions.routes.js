@@ -38,4 +38,20 @@ router.post('/new', async (req, res) => {
   }
 });
 
+/**
+ * @method PATCH try PUT?
+ * @route '/api/session/:tableNo'
+ * @param tableNo of table
+ * @summary sets session active status to false, adds endTime and removes session from table 
+ */
+router.patch('/:tableNo', async (req, res) => {
+  const table = await Table.findOne({ tableNo: req.params.tableNo });
+  await Session.findByIdAndUpdate(table.sessionId, {
+    $set: { endTime: Date.now(), active: false },
+  });
+  table.sessionId = undefined;
+  await table.save();
+  res.status(200).json({ message: 'Session ended' });
+});
+
 module.exports = router;
