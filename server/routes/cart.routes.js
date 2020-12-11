@@ -33,9 +33,8 @@ async function decreaseQty(session, index, res) {
  * @returns All cart items
  */
 router.get('/:sessionid', async (req, res) => {
-  const session = await (await Session.findById(req.params.sessionid))
-    .populate('cart.dish')
-    .execPopulate();
+  const session = await Session.findById(req.params.sessionid);
+  session.populate('cart.dish').execPopulate();
   res.status(200).json({ cart: session.cart });
 });
 
