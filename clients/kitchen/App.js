@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import PrivateRoute from '../shared/components/PrivateRoute';
+import Home from '../shared/components/Home';
+import Dashboard from './pages/Dashboard';
 
 function App() {
-  return <div>Kitchen</div>;
+  const [isAuth, setIsAuth] = useState(false);
+
+  return (
+    <BrowserRouter basename="/kitchen">
+      <h1>Kitchen</h1>
+      <Switch>
+        <Route exact path="/">
+          {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}
+        </Route>
+        <PrivateRoute exact path="/dashboard" component={Dashboard} isAuth={isAuth} />
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;

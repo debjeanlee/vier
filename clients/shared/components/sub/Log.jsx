@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { axiosPost } from '../helpers/api';
+import { axiosPost } from '../../helpers/api';
 
 function Log({ setIsAuth, url }) {
   const [form, setForm] = useState({
