@@ -29,18 +29,20 @@ async function decreaseQty(session, index, res) {
 /**
  * GET ITEMS IN CART FROM SESSIONID
  * @method GET
+ * @route '/api/cart/:sessionid'
  * @params sessionid
  * @returns All cart items
  */
 router.get('/:sessionid', async (req, res) => {
   const session = await Session.findById(req.params.sessionid);
-  session.populate('cart.dish').execPopulate();
+  await session.populate('cart.dish').execPopulate();
   res.status(200).json({ cart: session.cart });
 });
 
 /**
  * ADD ITEM TO CART / UPDATE QTY IF ITEM EXISTS
  * @method PATCH
+ * @route '/api/cart/add/:sessionid'
  * @params session id
  * @body dish id
  */
@@ -65,6 +67,7 @@ router.patch('/add/:sessionid', async (req, res) => {
 /**
  * INCREASE QUANTITY OF ITEM IN CART BY 1
  * @method PATCH
+ * @route '/api/cart/increase/:sessionid'
  * @params session id
  * @body dishId
  */
@@ -81,6 +84,7 @@ router.patch('/increase/:sessionid', async (req, res) => {
 /**
  * DECREASE QUANTITY OF ITEM IN CART BY 1
  * @method PATCH
+ * @route '/api/cart/decrease/:sessionid'
  * @params session id
  * @body dishId
  */
