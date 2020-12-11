@@ -3,8 +3,8 @@ const router = require('express').Router();
 const Session = require('../models/session.models');
 const Table = require('../models/table.models');
 
-// not sure if this is needed but putting it here first anyway
 /**
+ * GETS ACTIVE SESSIONS
  * @method GET
  * @route '/api/session/active'
  * @returns list of active sessions
@@ -15,6 +15,7 @@ router.get('/active', async (req, res) => {
 });
 
 /**
+ * CREATE NEW SESSION - needs table no
  * @method POST
  * @route '/api/session/new'
  * @body takes 'tableNo' in body to assign session to table on creation
@@ -39,10 +40,11 @@ router.post('/new', async (req, res) => {
 });
 
 /**
- * @method PATCH try PUT?
+ * END SESSION - needs table no
+ * @method PATCH
  * @route '/api/session/:tableNo'
- * @param tableNo of table
- * @summary sets session active status to false, adds endTime and removes session from table 
+ * @param tableNo of the session to end
+ * @summary sets session active status to false, adds endTime and removes session from table
  */
 router.patch('/:tableNo', async (req, res) => {
   const table = await Table.findOne({ tableNo: req.params.tableNo });
@@ -60,5 +62,4 @@ router.patch('/:tableNo', async (req, res) => {
     res.status(400).json({ message: 'Something went wrong' });
   }
 });
-
 module.exports = router;
