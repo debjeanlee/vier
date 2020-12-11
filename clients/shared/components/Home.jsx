@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-import Log from '../../shared/components/Log';
+import Log from './sub/Log';
 
 function Home({ setIsAuth }) {
   const authURL = process.env.AUTH;
