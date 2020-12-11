@@ -1,7 +1,7 @@
 const Dish = require('../server/models/dish.models');
 
 require('dotenv').config();
-require('../server/config/mongo.config');
+require('../server/configs/mongo.config');
 
 const data = require('./data.json');
 

@@ -53,4 +53,28 @@ router.patch('/new/:sessionid', async (req, res) => {
   }
 });
 
+/**
+ * CONFIRM ORDER
+ * @method PATCH
+ * @route '/api/orders/confirm/:orderid'
+ * @params orderNo to confirm
+ * @description sets progress of all order items to #2
+ */
+router.patch('/confirm/:orderNo', async (req, res) => {
+  try {
+    const order = await Order.findOne({ orderNo: req.params.orderNo });
+    const items = [];
+    order.items.forEach((el) => {
+      const obj = el;
+      obj.progress = 2;
+      items.push(obj);
+    });
+    order.items = items;
+    await order.save();
+    res.status(200).json({ message: `Order ${req.params.orderNo} confirmed` });
+  } catch (err) {
+    res.status(400).json({ message: 'Something went wrong' });
+  }
+});
+
 module.exports = router;
