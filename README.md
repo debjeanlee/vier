@@ -5,7 +5,9 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error eligendi volupta
 ## Team
 
 Jonas - Team Leader / Frontend Developer
+
 Eskaine - Tech Lead / Git Master
+
 Deborah - Backend Developer
 
 ## TechStack

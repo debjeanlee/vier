@@ -12,6 +12,14 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      buffer: 'buffer',
+      crypto: 'crypto-browserify',
+      http: 'stream-http',
+      https: 'https-browserify',
+      path: 'path-browserify',
+      stream: 'stream-browserify',
+    },
   },
   module: {
     rules: [
