@@ -1,9 +1,8 @@
-const Dish = require('../server/models/dish.models');
+const data = require('./data/data.json');
+const Dish = require('./server/models/dish.models');
 
 require('dotenv').config();
-require('../server/configs/mongo.config');
-
-const data = require('./data.json');
+require('./server/configs/mongo.config');
 
 const starterData = data.data[0];
 const steakData = data.data[1];
