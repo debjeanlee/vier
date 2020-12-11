@@ -11,7 +11,6 @@ const Dish = require('../models/dish.models');
  * @body dish id
  */
 router.patch('/add/:sessionid', async (req, res) => {
-  // find session
   const session = await Session.findById(req.params.sessionid);
   if (session.cart.length === 0) {
     try {
@@ -23,7 +22,6 @@ router.patch('/add/:sessionid', async (req, res) => {
     }
   } else {
     const indexOfItem = session.cart.findIndex((el) => String(el.dish) === req.body.dishId);
-    // const item = session.cart.filter((el) => String(el.dish) === req.body.dishId);
     if (indexOfItem !== -1) {
       session.cart[indexOfItem].quantity += 1;
       await session.save();
