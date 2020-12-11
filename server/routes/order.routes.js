@@ -63,13 +63,11 @@ router.patch('/new/:sessionid', async (req, res) => {
 router.patch('/confirm/:orderNo', async (req, res) => {
   try {
     const order = await Order.findOne({ orderNo: req.params.orderNo });
-    const items = [];
-    order.items.forEach((el) => {
+    order.items = order.items.map((el) => {
       const obj = el;
       obj.progress = 2;
-      items.push(obj);
+      return obj;
     });
-    order.items = items;
     await order.save();
     res.status(200).json({ message: `Order ${req.params.orderNo} confirmed` });
   } catch (err) {
