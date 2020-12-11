@@ -11,9 +11,9 @@ function App() {
     <BrowserRouter basename="/service">
       <Switch>
         <Route exact path="/">
-          {isAuth ? <Redirect to="/dashboard" /> : <Home />}
+          {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}
         </Route>
-        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} isAuth={isAuth} />
       </Switch>
     </BrowserRouter>
   );
