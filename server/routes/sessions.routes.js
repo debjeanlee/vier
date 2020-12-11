@@ -46,12 +46,19 @@ router.post('/new', async (req, res) => {
  */
 router.patch('/:tableNo', async (req, res) => {
   const table = await Table.findOne({ tableNo: req.params.tableNo });
-  await Session.findByIdAndUpdate(table.sessionId, {
-    $set: { endTime: Date.now(), active: false },
-  });
-  table.sessionId = undefined;
-  await table.save();
-  res.status(200).json({ message: 'Session ended' });
+  if (!table.sessionId) {
+    return res.status(400).json({ message: 'No session found' });
+  }
+  try {
+    await Session.findByIdAndUpdate(table.sessionId, {
+      $set: { endTime: Date.now(), active: false },
+    });
+    table.sessionId = undefined;
+    await table.save();
+    res.status(200).json({ message: 'Session ended' });
+  } catch (err) {
+    res.status(400).json({ message: 'Something went wrong' });
+  }
 });
 
 module.exports = router;
