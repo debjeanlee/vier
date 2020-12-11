@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PrivateRoute from '../shared/components/PrivateRoute';
-import Home from './pages/Home';
+import Home from '../shared/components/Home';
 import Dashboard from './pages/Dashboard';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
 
   return (
     <BrowserRouter basename="/service">
+      <h1>Service</h1>
       <Switch>
         <Route exact path="/">
           {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}

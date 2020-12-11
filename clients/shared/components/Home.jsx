@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Log from '../../shared/components/Log';
+import Log from './sub/Log';
 
 function Home({ setIsAuth }) {
   const authURL = process.env.AUTH;
@@ -17,16 +17,16 @@ function Home({ setIsAuth }) {
         <button onClick={clickHandler}>Login</button>
       </div>
       {showReg && (
-        <Fragment>
+        <>
           <h1>Register</h1>
           <Log id="Register" setIsAuth={setIsAuth} url={`${authURL}/register`} />
-        </Fragment>
+        </>
       )}
       {!showReg && (
-        <Fragment>
+        <>
           <h1>Login</h1>
           <Log id="Login" setIsAuth={setIsAuth} url={`${authURL}/login`} />
-        </Fragment>
+        </>
       )}
     </div>
   );
