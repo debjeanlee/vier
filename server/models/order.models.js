@@ -10,12 +10,13 @@ const orderSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Dish',
       },
-      quantity: { type: Number, default: 1, required: true },
+      quantity: { type: Number, required: true },
       progress: { type: Number, default: 1, max: 5 },
     },
   ],
   totalCost: Number,
   orderedAt: { type: Date, default: Date.now },
+  completed: { type: Boolean, default: false },
 });
 
 const Order = mongoose.model('Order', orderSchema);

@@ -20,6 +20,7 @@ router.get('/empty', async (req, res) => {
 /**
  * SHIFT SESSION FROM ONE TABLE TO ANOTHER
  * @method PATCH
+ * @route '/api/tables/:tableNo'
  * @param tableNo takes current table no
  * @body takes new tableNo
  * @description shifts session from param table to body table
