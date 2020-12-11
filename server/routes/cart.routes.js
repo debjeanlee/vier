@@ -1,7 +1,6 @@
 const router = require('express').Router();
 
 const Session = require('../models/session.models');
-const Order = require('../models/order.models');
 
 async function addItem(session, req, res) {
   session.cart.push({ dish: req.body.dishId });
@@ -26,6 +25,19 @@ async function decreaseQty(session, index, res) {
     res.status(200).json({ message: 'Quantity of item decreased' });
   }
 }
+
+/**
+ * GET ITEMS IN CART FROM SESSIONID
+ * @method GET
+ * @params sessionid
+ * @returns All cart items
+ */
+router.get('/:sessionid', async (req, res) => {
+  const session = await (await Session.findById(req.params.sessionid))
+    .populate('cart.dish')
+    .execPopulate();
+  res.status(200).json({ cart: session.cart });
+});
 
 /**
  * ADD ITEM TO CART / UPDATE QTY IF ITEM EXISTS
