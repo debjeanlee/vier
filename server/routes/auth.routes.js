@@ -3,7 +3,7 @@ const passport = require('passport');
 
 router.post(
   '/register',
-  passport.authenticate('local', {
+  passport.authenticate('register', {
     successRedirect: '/',
     failureRedirect: '/login',
   })
@@ -11,7 +11,7 @@ router.post(
 
 router.post(
   '/login',
-  passport.authenticate('local', {
+  passport.authenticate('login', {
     successRedirect: '/',
     failureRedirect: '/login',
   })
