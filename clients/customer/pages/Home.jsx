@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import Categories from '../components/Categories';
-import Dishes from '../components/Dishes';
+import MenuItems from '../components/MenuItems';
 
-function Home({setBackdropWidth, setSelectedCategory, selectedCategory}) {
-  const [categoriesData, setCategoriesData] = useState({});
+function Home({ setBackdropWidth, setSelectedCategory, selectedCategory }) {
+  const [categoriesData, setCategoriesData] = useState([]);
   const [categoryHeaderPos, setCategoryHeaderPos] = useState('100');
 
-  //   async function getCategories() {
-  //     try {
-  //       const res = await axios.get('https://localhost:3000/api/categories');
-  //       setCategoriesData(res.data);
-  //       console.log('data', categoriesData);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  //   getCategories();
+  async function getCategories() {
+    try {
+      const res = await axios.get('/api/categories');
+      console.log('data:', res.data);
+      setCategoriesData(res.data.categories);
+      console.log('data', categoriesData);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   function openCategory(category) {
     setSelectedCategory(category);
@@ -30,10 +33,17 @@ function Home({setBackdropWidth, setSelectedCategory, selectedCategory}) {
       behavior: 'smooth',
     });
   }
+
   if (selectedCategory === '') {
-    return <Categories openCategory={openCategory} />;
+    return <Categories openCategory={openCategory} categoriesData={categoriesData} />;
   }
-  return <Dishes selectedCategory={selectedCategory} categoryHeaderPos={categoryHeaderPos} />;
+  return <MenuItems selectedCategory={selectedCategory} categoryHeaderPos={categoryHeaderPos} />;
 }
+
+Home.propTypes = {
+  setBackdropWidth: PropTypes.func,
+  setSelectedCategory: PropTypes.func,
+  selectedCategory: PropTypes.string,
+};
 
 export default Home;
