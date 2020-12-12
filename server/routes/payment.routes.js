@@ -18,6 +18,7 @@ router.get('/new', async (req, res) => {
 /**
  * @method POST
  * @route '/api/payment/capture'
+ * @returns successful payment result
  */
 router.post('/capture', async (req, res) => {
   try {
