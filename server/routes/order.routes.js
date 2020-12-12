@@ -82,7 +82,7 @@ router.patch('/confirm/:orderNo', async (req, res) => {
  * @params orderId to find order
  * @body takes itemId in body to find item
  */
-router.get('/items/:id', async (req, res) => {
+router.patch('/items/:id', async (req, res) => {
   try {
     // find order by id
     const order = await Order.findById(req.params.id);
