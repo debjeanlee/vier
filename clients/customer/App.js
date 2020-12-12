@@ -5,6 +5,7 @@ import './styles/menu.scss';
 import { faShoppingBasket, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Cart from './components/Cart';
+import Topbar from "./components/ui/Topbar";
 
 function App() {
   // function
@@ -20,14 +21,7 @@ function App() {
   return (
     <Router>
       <div className="main-div">
-        <div className="topbar">
-          <div className="topbar-buttons-wrapper" onClick={goHome}>
-            <FontAwesomeIcon icon={faHome} className="fa-home" />
-          </div>
-          <div className="topbar-buttons-wrapper">
-            <FontAwesomeIcon icon={faShoppingBasket} className="fa-shopping" />
-          </div>
-        </div>
+        <Topbar goHome={goHome} />
         <div className="backdrop-solid" style={{ width: `${backdropWidth}vw` }} />
         <Switch>
           <Route>

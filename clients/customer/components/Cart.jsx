@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { cartData } from '../data/testData';
+import { calculateTotal } from '../../shared/helpers/func';
 
 function Cart({ session }) {
   const [cartPosition, setCartPosition] = useState('-60');
@@ -14,14 +15,6 @@ function Cart({ session }) {
     } else if (expandCart.current === false) {
       setCartPosition('-60');
     }
-  }
-
-  function calculateTotal(cart) {
-    let total = 0;
-    cart.forEach((item) => {
-      total += item.price;
-    });
-    return total;
   }
 
   const cartTotal = calculateTotal(cartData);
