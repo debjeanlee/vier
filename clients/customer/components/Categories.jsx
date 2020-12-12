@@ -6,7 +6,7 @@ import CategoryCard from './ui/CategoryCard';
 
 function Categories({ openCategory }) {
   const categories = categoryData.map((category) => (
-    <CategoryCard category={category} openCategory={openCategory} />
+    <CategoryCard category={category} openCategory={openCategory} key={category.name} />
   ));
 
   return (

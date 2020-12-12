@@ -3,6 +3,7 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { cartData } from '../data/testData';
 import { calculateTotal } from '../../shared/helpers/func';
+import CartItemCard from './ui/CartItemCard';
 
 function Cart({ session }) {
   const [cartPosition, setCartPosition] = useState('-60');
@@ -19,12 +20,7 @@ function Cart({ session }) {
 
   const cartTotal = calculateTotal(cartData);
 
-  const cartItems = cartData.map((item) => (
-    <div className="cart-item-card">
-      <h6>{item.name}</h6>
-      <p>${item.price}</p>
-    </div>
-  ));
+  const cartItems = cartData.map((item) => <CartItemCard cartItem={item} key={item.name} />);
 
   return (
     <div className="cart-div" style={{ bottom: `${cartPosition}vh` }}>

@@ -129,7 +129,7 @@ body {
       }
     }
 
-    .dishes-main-div {
+    .menuitems-main-div {
       @include flex-c-c;
       flex-direction: column;
       margin-top: 18vh;
@@ -148,13 +148,13 @@ body {
         @include shadow-layer1;
       }
 
-      .dish-card {
+      .menuitem-card {
         @include menu-card;
         margin: 13px 10px;
         height: 150px;
         @include expansion-transition;
 
-        .dish-info {
+        .menuitem-info {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -162,7 +162,7 @@ body {
           height: 60%;
           margin: 0 0 0 25%;
 
-          .dish-title-description-div {
+          .menuitem-title-description-div {
             display: flex;
             flex-direction: column;
 
@@ -210,7 +210,7 @@ body {
           }
         }
 
-        .dish-quantity-div {
+        .menuitem-quantity-div {
           @include flex-sb-c;
           @include shadow-layer2;
           flex-direction: column;
