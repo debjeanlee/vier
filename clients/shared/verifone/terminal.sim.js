@@ -9,31 +9,33 @@ const createTerminal = async () => {
       const res = await axiosPost(`${process.env.PAYMENT}/token`);
       return res.secret;
     },
-    onUnexpectedReaderDisconnect: async () => {},
+    onUnexpectedReaderDisconnect: async (error) => {
+      throw new Error(error);
+    },
   });
 };
 
-const connectReaderHandler = async () => {
+const connectTerminal = async () => {
   const config = { simulated: true };
   const terminal = await createTerminal();
   const discoverResult = await terminal.discoverReaders(config);
 
   if (discoverResult.error) {
-    console.log('Failed to discover: ', discoverResult.error);
+    throw new Error(`Failed to discover: ${discoverResult.error}`);
   } else if (discoverResult.discoveredReaders.length === 0) {
-    console.log('No available readers.');
+    throw new Error('No available readers.');
   } else {
-    // Just select the first reader here.
+    // Select first reader
     const selectedReader = discoverResult.discoveredReaders[0];
-
+    // Connect reader
     const connectResult = await terminal.connectReader(selectedReader);
 
     if (connectResult.error) {
-      console.log('Failed to connect: ', connectResult.error);
+      throw new Error(`Failed to connect: ${connectResult.error}`);
     } else {
-      console.log('Connected to reader: ', connectResult.reader.label);
+      return terminal;
     }
   }
 };
 
-export { connectReaderHandler };
+export default connectTerminal;
