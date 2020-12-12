@@ -1,14 +1,6 @@
 const config = require('./webpack.config');
-const { DefinePlugin } = require('webpack');
 const { merge } = require('webpack-merge');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const dotenv = require('dotenv');
-const env = dotenv.config().parsed;
-
-const envKeys = Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  return prev;
-}, {});
 
 module.exports = merge(config, {
   mode: 'development',
@@ -46,6 +38,5 @@ module.exports = merge(config, {
       filename: 'kitchen/index.html',
       chunks: ['kitchen'],
     }),
-    new DefinePlugin(envKeys),
   ],
 });
