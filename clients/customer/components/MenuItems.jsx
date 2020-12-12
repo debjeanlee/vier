@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import { axiosGet } from '../../shared/helpers/api';
 import MenuItemCard from './ui/MenuItemCard';
 
 function MenuItems({ selectedCategory, categoryHeaderPos }) {
@@ -8,34 +8,22 @@ function MenuItems({ selectedCategory, categoryHeaderPos }) {
   const [menuItemsData, setMenuItemsData] = useState([]);
 
   async function getMenuItems() {
-    try {
-      const res = await axios.get(`/api/dishes/${selectedCategory}`);
-      setMenuItemsData(res.data.dishes);
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-
-  useEffect(() => {
-    getMenuItems();
-  }, []);
-
-  function expandMenuItem(name) {
-    if (selectedMenuItem === name) {
-      setSelectedMenuItem('');
-    } else {
-      setSelectedMenuItem(name);
-    }
+    const res = await axiosGet(`/api/dishes/${selectedCategory}`);
+    setMenuItemsData(res.dishes);
   }
 
   const dishes = menuItemsData.map((dish) => (
     <MenuItemCard
       menuItem={dish}
-      expandMenuItem={expandMenuItem}
       selectedMenuItem={selectedMenuItem}
+      setSelectedMenuItem={setSelectedMenuItem}
       key={dish.name}
     />
   ));
+
+  useEffect(() => {
+    getMenuItems();
+  }, []);
 
   return (
     <div className="home-page-div">

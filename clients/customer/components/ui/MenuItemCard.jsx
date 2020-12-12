@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-function MenuItemCard({ menuItem, expandMenuItem, selectedMenuItem }) {
+function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
+  function expandMenuItem(name) {
+    if (selectedMenuItem === name) {
+      setSelectedMenuItem('');
+    } else {
+      setSelectedMenuItem(name);
+    }
+  }
+
   return (
     <div
       className="menuitem-card"
@@ -44,8 +52,8 @@ function MenuItemCard({ menuItem, expandMenuItem, selectedMenuItem }) {
 
 MenuItemCard.propTypes = {
   menuItem: PropTypes.object,
-  expandMenuItem: PropTypes.func,
   selectedMenuItem: PropTypes.string,
+  setSelectedMenuItem: PropTypes.func,
   name: PropTypes.string,
   img: PropTypes.string,
   description: PropTypes.string,
