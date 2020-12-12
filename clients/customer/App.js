@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
-import Home from './pages/Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './styles/menu.scss';
-import { faShoppingBasket, faHome } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Home from './pages/Home';
 import Cart from './components/Cart';
-import Topbar from "./components/ui/Topbar";
+import Topbar from './components/ui/Topbar';
 
 function App() {
   // function
-  const [sessionData, getSessionData] = useState({});
+  const [sessionData, setSessionData] = useState({});
   const [selectedCategory, setSelectedCategory] = useState('');
   const [backdropWidth, setBackdropWidth] = useState('35');
 
@@ -30,7 +28,7 @@ function App() {
               setSelectedCategory={setSelectedCategory}
               selectedCategory={selectedCategory}
             />
-            <Cart session={sessionData} />
+            <Cart sessionData={sessionData} />
           </Route>
         </Switch>
       </div>
