@@ -2,22 +2,30 @@ import { loadStripeTerminal } from '@stripe/terminal-js';
 import { axiosPost } from '../helpers/api';
 
 const createTerminal = async () => {
-  const StripeTerminal = await loadStripeTerminal();
+  try {
+    const StripeTerminal = await loadStripeTerminal();
 
-  return StripeTerminal.create({
-    onFetchConnectionToken: async () => {
-      const res = await axiosPost(`${process.env.PAYMENT}/token`);
-      return res.secret;
-    },
-    onUnexpectedReaderDisconnect: async (error) => {
-      throw new Error(error);
-    },
-  });
+    return StripeTerminal.create({
+      onFetchConnectionToken: async () => {
+        try {
+          const res = await axiosPost(`${process.env.PAYMENT}/token`);
+          return res.secret;
+        } catch (error) {
+          throw new Error(error);
+        }
+      },
+      onUnexpectedReaderDisconnect: async (error) => {
+        throw new Error(error);
+      },
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 const connectTerminal = async () => {
   const config = { simulated: true };
-  const terminal = await createTerminal();
+  const terminal = createTerminal();
   const discoverResult = await terminal.discoverReaders(config);
 
   if (discoverResult.error) {
