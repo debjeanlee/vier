@@ -15,6 +15,7 @@ Deborah - Backend Developer
 - MERN
 - Socket.IO
 - Stripe
+- Redux
 - React Router
 - Sass
 - Webpack
