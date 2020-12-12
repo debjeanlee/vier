@@ -1,22 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import Home from './pages/Home';
-import '../shared/styles/main.scss';
-import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import './styles/menu.scss';
+import { faShoppingBasket, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Cart from './components/Cart';
 
 function App() {
+  // function
+  const [sessionData, getSessionData] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [backdropWidth, setBackdropWidth] = useState('35');
+
+  function goHome() {
+    setSelectedCategory('');
+    setBackdropWidth('35');
+  }
+
   return (
     <Router>
       <div className="main-div">
         <div className="topbar">
-          <div>Home</div>
-          <FontAwesomeIcon icon={faShoppingBasket} className="fa-shopping" />
+          <div className="topbar-buttons-wrapper" onClick={goHome}>
+            <FontAwesomeIcon icon={faHome} className="fa-home" />
+          </div>
+          <div className="topbar-buttons-wrapper">
+            <FontAwesomeIcon icon={faShoppingBasket} className="fa-shopping" />
+          </div>
         </div>
-        <div className="backdrop-solid" />
+        <div className="backdrop-solid" style={{ width: `${backdropWidth}vw` }} />
         <Switch>
           <Route>
-            <Home />
+            <Home
+              setBackdropWidth={setBackdropWidth}
+              setSelectedCategory={setSelectedCategory}
+              selectedCategory={selectedCategory}
+            />
+            <Cart session={sessionData} />
           </Route>
         </Switch>
       </div>
