@@ -1,12 +1,10 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { categoryData } from '../data/testData';
+import PropTypes from 'prop-types';
 import CategoryCard from './ui/CategoryCard';
 
-function Categories({ openCategory }) {
-  const categories = categoryData.map((category) => (
-    <CategoryCard category={category} openCategory={openCategory} key={category.name} />
+function Categories({ openCategory, categoriesData }) {
+  const categories = categoriesData.map((category) => (
+    <CategoryCard categoryData={category} openCategory={openCategory} key={category.name} />
   ));
 
   return (
@@ -15,5 +13,10 @@ function Categories({ openCategory }) {
     </div>
   );
 }
+
+Categories.propTypes = {
+  openCategory: PropTypes.func,
+  categoriesData: PropTypes.array,
+};
 
 export default Categories;
