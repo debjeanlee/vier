@@ -10,7 +10,7 @@ function MenuItemCard({ menuItem, expandMenuItem, selectedMenuItem }) {
       key={menuItem.name}
       style={menuItem.name === selectedMenuItem ? { height: `240px` } : {}}
     >
-      <img src={menuItem.img_url} alt="" />
+      <img src={menuItem.img} alt="" />
       <div
         className="menuitem-info"
         role="menuitem"
@@ -47,7 +47,7 @@ MenuItemCard.propTypes = {
   expandMenuItem: PropTypes.func,
   selectedMenuItem: PropTypes.string,
   name: PropTypes.string,
-  img_url: PropTypes.string,
+  img: PropTypes.string,
   description: PropTypes.string,
 };
 

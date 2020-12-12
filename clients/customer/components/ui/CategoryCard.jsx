@@ -1,17 +1,19 @@
 import React from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-function CategoryCard( { category, openCategory }) {
+function CategoryCard({ categoryData, openCategory }) {
   return (
     <div
       className="category-card"
-      key={category.name}
-      onMouseUp={() => openCategory(category.name)}
+      key={categoryData.name}
+      onMouseUp={() => openCategory(categoryData.name)}
+      role="menuitem"
     >
-      <img src={category.img_url} alt="" />
+      <img src={categoryData.img_url} alt="" />
       <div className="category-info">
-        <h2>{category.name}</h2>
+        <h2>{categoryData.name}</h2>
         <p>7 items</p>
       </div>
       <div className="arrow-div">
@@ -20,5 +22,10 @@ function CategoryCard( { category, openCategory }) {
     </div>
   );
 }
+
+CategoryCard.propTypes = {
+  categoryData: PropTypes.object,
+  openCategory: PropTypes.func,
+};
 
 export default CategoryCard;
