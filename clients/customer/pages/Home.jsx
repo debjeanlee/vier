@@ -11,11 +11,9 @@ function Home({ setBackdropWidth, setSelectedCategory, selectedCategory }) {
   async function getCategories() {
     try {
       const res = await axios.get('/api/categories');
-      console.log('data:', res.data);
       setCategoriesData(res.data.categories);
-      console.log('data', categoriesData);
     } catch (err) {
-      console.log(err);
+      throw new Error(err);
     }
   }
 
