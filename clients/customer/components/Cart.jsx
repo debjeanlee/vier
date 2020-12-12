@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { cartData } from '../data/testData';
 import { calculateTotal } from '../../shared/helpers/func';
 import CartItemCard from './ui/CartItemCard';
 
-function Cart({ session }) {
+function Cart({ sessionData }) {
   const [cartPosition, setCartPosition] = useState('-60');
   const expandCart = useRef(false);
 
@@ -40,5 +41,9 @@ function Cart({ session }) {
     </div>
   );
 }
+
+Cart.propTypes = {
+  sessionData: PropTypes.func,
+};
 
 export default Cart;

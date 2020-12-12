@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import { menuItemsData } from '../data/testData';
+import axios from 'axios';
 import MenuItemCard from './ui/MenuItemCard';
 
 function MenuItems({ selectedCategory, categoryHeaderPos }) {
   const [selectedMenuItem, setSelectedMenuItem] = useState('');
+  const [menuItemsData, setMenuItemsData] = useState([]);
+
+  async function getMenuItems() {
+    try {
+      const res = await axios.get(`/api/dishes/${selectedCategory}`);
+      setMenuItemsData(res.data.dishes);
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  useEffect(() => {
+    getMenuItems();
+  }, []);
 
   function expandMenuItem(name) {
     if (selectedMenuItem === name) {
