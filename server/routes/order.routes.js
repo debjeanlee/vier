@@ -75,4 +75,36 @@ router.patch('/confirm/:orderNo', async (req, res) => {
   }
 });
 
+/**
+ * UPDATE ITEM PROGRESS, UPDATES ORDER STATUS IF ALL ITEMS COMPLETE
+ * @method PATCH
+ * @route '/api/orders/:orderId'
+ * @params orderId to find order
+ * @body takes itemId in body to find item
+ */
+router.get('/items/:id', async (req, res) => {
+  try {
+    // find order by id
+    const order = await Order.findById(req.params.id);
+    // find item
+    const item = order.items.find((el) => String(el._id) === req.body.itemId);
+    // check progress of item
+    if (item.progress < 5) {
+      item.progress += 1;
+      // check if all order items are complete - i.e. progress = 5, returns false if one is not 5
+      order.completed = order.items.every((el) => el.progress === 5);
+      order.save();
+      if (order.completed) {
+        res.status(200).json({ message: 'Order complete' });
+      } else {
+        res.status(200).json({ message: 'Item progress updated' });
+      }
+    } else {
+      res.status(400).json({ message: 'Order is complete' });
+    }
+  } catch (error) {
+    res.status(400).json({ message: 'Something went wrong' });
+  }
+});
+
 module.exports = router;
