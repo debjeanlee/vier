@@ -1,0 +1,314 @@
+@import './clients/shared/styles/variables';
+@import './clients/shared/styles/mixins';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Ultra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;400;500;600;700&display=swap');
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px 0 30px 0;
+  height: 200px;
+  width: 75%;
+
+  .topbar-buttons-wrapper {
+    @include flex-c-c;
+    //border: black solid 1px;
+    width: 30px;
+    height: 40px;
+
+    .fa-home {
+      color: white;
+      font-size: 20px;
+    }
+
+    .fa-shopping {
+      color: #dddddd;
+      font-size: 20px;
+    }
+  }
+}
+
+.backdrop-solid {
+  position: fixed;
+  z-index: -4;
+  top: 0;
+  left: 0;
+  background-color: $accent-color;
+  width: 35vw;
+  height: 200vh;
+  @include page-transition;
+}
+
+.main-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 700px;
+
+  .home-page-div {
+    width: 100%;
+
+    .category-main-div {
+      @include flex-c-c;
+      flex-direction: column;
+      margin-bottom: 100px;
+
+      img {
+        object-fit: cover;
+        position: absolute;
+        border-radius: 20px;
+        width: 60px;
+        height: 60px;
+        left: -20px;
+        background-color: #f1f1f1;
+        @include border;
+        @include shadow-layer1;
+
+      }
+
+      .category-card {
+        @include menu-card;
+        margin: 13px 10px;
+        height: 100px;
+
+        .category-info {
+          display: flex;
+          flex-direction: column;
+          margin: 0 60px;
+
+          h2 {
+            @include ultra-font-defaults;
+            margin: 0 0 5px 0;
+            color: $title-color-dark;
+          }
+
+          p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            color: $mild-text-color;
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        .arrow-div {
+          @include flex-c-c;
+          position: absolute;
+          background-color: #f6f6f6;
+          right: -20px;
+          width: 40px;
+          height: 40px;
+          border-radius: 40px;
+          @include shadow-layer2;
+
+          .fa-arrow {
+            color: #e64253;
+          }
+        }
+      }
+    }
+
+    .category-header-div {
+      position: absolute;
+      left: 10vw;
+      top: 15vh;
+      @include page-transition;
+
+      h3 {
+        @include ultra-font-defaults;
+        font-size: 30px;
+        color: $card-color;
+      }
+    }
+
+    .dishes-main-div {
+      @include flex-c-c;
+      flex-direction: column;
+      margin-top: 18vh;
+      margin-bottom: 100px;
+
+      img {
+        object-fit: cover;
+        position: absolute;
+        border-radius: 20px;
+        width: 90px;
+        height: 90px;
+        left: -30px;
+        top: 30px;
+        background-color: #f1f1f1;
+        @include border;
+        @include shadow-layer1;
+      }
+
+      .dish-card {
+        @include menu-card;
+        margin: 13px 10px;
+        height: 150px;
+        @include expansion-transition;
+
+        .dish-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 60%;
+          height: 60%;
+          margin: 0 0 0 25%;
+
+          .dish-title-description-div {
+            display: flex;
+            flex-direction: column;
+
+            //dish title
+            h4 {
+              font-family: 'Zilla Slab', serif;
+              font-weight: 700;
+              color: $title-color-dark;
+              margin: 0 0 5px 0;
+            }
+
+            //dish description
+            p {
+              font-family: 'Open Sans', sans-serif;
+              font-size: 13px;
+              margin: 0;
+              padding: 0;
+              color: $mild-text-color;
+            }
+          }
+
+          .weight-price-div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 20px;
+            //width: 100%;
+
+            p {
+              font-family: 'Open Sans', sans-serif;
+              font-size: 12px;
+              font-weight: 300;
+              color: grey;
+              margin: 0;
+              padding: 0;
+            }
+
+            h6 {
+              font-family: 'Zilla Slab', serif;
+              color: $accent-color;
+              font-size: 20px;
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+
+        .dish-quantity-div {
+          @include flex-sb-c;
+          @include shadow-layer2;
+          flex-direction: column;
+          position: absolute;
+          background-color: #f6f6f6;
+          right: -20px;
+          bottom: 25px;
+          width: 40px;
+          height: 90px;
+          border-radius: 40px;
+
+          .fa-icon-div {
+            @include flex-c-c;
+            width: 100%;
+            height: 20px;
+            &:first-child {
+              //margin-top: 10px;
+              padding-top: 10px;
+              margin-bottom: 3px;
+            }
+            &:nth-child(3) {
+              padding-bottom: 8px;
+            }
+
+            .fa-icon {
+              color: $accent-color;
+              font-size: 12px;
+              &.plus {
+              }
+              &.minus {
+              }
+
+            }
+
+          }
+
+          h6 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .cart-div {
+    @include menu-card;
+    @include flex-sb-c;
+    position: fixed;
+    flex-direction: column;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.97);
+    width: 100%;
+    border-radius: 30px 30px 5px 5px;
+    bottom: 0;
+    height: 70vh;
+    @include page-transition;
+
+    .cart-header {
+      @include flex-sb-c;
+      width: 80%;
+
+      h4 {
+        color: $title-color-dark;
+        font-family: 'Zilla Slab', serif;
+        font-size: 20px;
+      }
+
+      .fa-arrow {
+        color: $accent-color;
+        @include expansion-transition;
+      }
+    }
+
+    .cart-body {
+      @include flex-c-c;
+      flex-direction: column;
+      width: 80%;
+      overflow-y: scroll;
+
+      .cart-item-card {
+        @include flex-sb-c;
+        width: 100%;
+        height: 50px;
+
+        h6 {
+          font-family: 'Open Sans', sans-serif;
+          font-size: 15px;
+          font-weight: 200;
+        }
+      }
+    }
+
+    .cart-footer {
+      @include flex-sb-c;
+      width: 80%;
+      height: 70px;
+    }
+  }
+}
