@@ -4,6 +4,21 @@ const Session = require('../models/session.models');
 const Table = require('../models/table.models');
 
 /**
+ * GET ONE SESSION BY TABLE NO
+ * @method GET
+ * @route '/api/session/:tableNo'
+ * @returns single session - for customer side
+ */
+router.get('/:tableNo', async (req, res) => {
+  try {
+    const session = await Table.find({ tableNo: req.params.tableNo }).populate('sessionId');
+    res.status(200).json({ session });
+  } catch (error) {
+    res.status(400).json({ message: 'Something went wrong' });
+  }
+});
+
+/**
  * GETS ACTIVE SESSIONS
  * @method GET
  * @route '/api/session/active'
