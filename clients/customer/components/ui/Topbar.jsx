@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faTasks } from '@fortawesome/free-solid-svg-icons';
 
 function Topbar({ goHome }) {
   return (
@@ -10,7 +10,7 @@ function Topbar({ goHome }) {
         <FontAwesomeIcon icon={faHome} className="fa-home" />
       </div>
       <div className="topbar-buttons-wrapper">
-        <FontAwesomeIcon icon={faShoppingBasket} className="fa-shopping" />
+        <FontAwesomeIcon icon={faTasks} className="fa-shopping" />
       </div>
     </div>
   );
