@@ -3,21 +3,29 @@ import PropTypes from 'prop-types';
 import { axiosGet } from '../../shared/helpers/api';
 import MenuItemCard from './ui/MenuItemCard';
 
-function MenuItems({ selectedCategory, categoryHeaderPos }) {
+
+function MenuItems({ pageMode, categoryHeaderPos }) {
   const [selectedMenuItem, setSelectedMenuItem] = useState('');
   const [menuItemsData, setMenuItemsData] = useState([]);
 
+  function expandMenuItem(name) {
+    if (selectedMenuItem === name) {
+      setSelectedMenuItem('');
+    } else {
+      setSelectedMenuItem(name);
+    }
+  }
   async function getMenuItems() {
-    const res = await axiosGet(`/api/dishes/${selectedCategory}`);
+    const res = await axiosGet(`/api/dishes/${pageMode.category}`);
     setMenuItemsData(res.dishes);
   }
 
-  const dishes = menuItemsData.map((dish) => (
+  const dishes = menuItemsData.map((item) => (
     <MenuItemCard
-      menuItem={dish}
+      menuItem={item}
+      expandMenuItem={expandMenuItem}
       selectedMenuItem={selectedMenuItem}
-      setSelectedMenuItem={setSelectedMenuItem}
-      key={dish.name}
+      key={item.name}
     />
   ));
 
@@ -28,7 +36,7 @@ function MenuItems({ selectedCategory, categoryHeaderPos }) {
   return (
     <div className="home-page-div">
       <div className="category-header-div" style={{ left: `${categoryHeaderPos}vw` }}>
-        <h3>{selectedCategory} </h3>
+        <h3>{pageMode.category} </h3>
         <h3>menu</h3>
       </div>
       <div className="menuitems-main-div">{dishes}</div>
@@ -37,7 +45,7 @@ function MenuItems({ selectedCategory, categoryHeaderPos }) {
 }
 
 MenuItems.propTypes = {
-  selectedCategory: PropTypes.string,
+  pageMode: PropTypes.object,
   categoryHeaderPos: PropTypes.string,
 };
 

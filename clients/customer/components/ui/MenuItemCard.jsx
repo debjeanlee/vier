@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import Icon from '../../../shared/uiComponents/Icon';
+
+import FAIcon from '../../../shared/components/FAIcon';
 
 function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
   function expandMenuItem(name) {
@@ -12,12 +12,18 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
       setSelectedMenuItem(name);
     }
   }
+  function incrementItem() {}
+
+  function decrementItem() {}
 
   return (
     <div
-      className="menuitem-card"
+      className={
+        menuItem.name === selectedMenuItem && menuItem.description !== ''
+          ? 'menuitem-card expand'
+          : 'menuitem-card'
+      }
       key={menuItem.name}
-      style={menuItem.name === selectedMenuItem ? { height: `240px` } : {}}
     >
       <img src={menuItem.img} alt="" />
       <div
@@ -29,21 +35,34 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
       >
         <div className="menuitem-title-description-div">
           <h4>{menuItem.name}</h4>
-          {menuItem.name === selectedMenuItem ? <p>{menuItem.description}</p> : ''}
+          <p style={menuItem.name === selectedMenuItem ? { opacity: `1` } : {}}>
+            {menuItem.description}
+          </p>
         </div>
         <div className="weight-price-div">
           <p>250g</p>
-          <h6>${menuItem.price}</h6>
+          <h6>
+            ${menuItem.price}
+            {menuItem.pricesuffix}
+          </h6>
         </div>
       </div>
       <div className="menuitem-quantity-div">
-        <div className="fa-icon-div">
-          <FontAwesomeIcon icon={faPlus} className="fa-icon plus" />
-        </div>
+        <FAIcon
+          icon={faPlus}
+          iconClass="fa-icon plus"
+          divClass="fa-icon-div"
+          clickFunc={incrementItem}
+        />
         <div className="quantiy-count">
           <h6>5</h6>
         </div>
-        <Icon wrapClass="fa-icon-div" icon={faMinus} iconClass="fa-icon minus" />
+        <FAIcon
+          icon={faMinus}
+          iconClass="fa-icon minus"
+          divClass="fa-icon-div"
+          clickFunc={decrementItem}
+        />
       </div>
     </div>
   );
