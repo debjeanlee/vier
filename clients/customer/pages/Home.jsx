@@ -11,10 +11,7 @@ function Home({ pageMode, setPageMode }) {
 
   async function getMenu() {
     try {
-      // const res = await axios.get('/api/categories');
-      // setCategoriesData(res.data.categories);
       const res = await axiosGet('/api/dishes');
-      console.log('res', res.data.menuItems);
       setMenuData(res.data.menuItems);
     } catch (err) {
       throw new Error(err);
