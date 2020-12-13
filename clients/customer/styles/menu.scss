@@ -1,5 +1,5 @@
-@import './clients/shared/styles/variables';
-@import './clients/shared/styles/mixins';
+@import 'clients/shared/styles/variables';
+@import 'clients/shared/styles/mixins';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Ultra&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;400;500;600;700&display=swap');
 
@@ -40,9 +40,16 @@ body {
   top: 0;
   left: 0;
   background-color: $accent-color;
-  width: 35vw;
   height: 200vh;
   @include page-transition;
+
+  &.home {
+    width: 35vw;
+  }
+
+  &.menuitems {
+    width: 70vw;
+  }
 }
 
 .main-div {
@@ -139,10 +146,10 @@ body {
         object-fit: cover;
         position: absolute;
         border-radius: 20px;
-        width: 90px;
-        height: 90px;
-        left: -30px;
-        top: 30px;
+        width: 77px;
+        height: 77px;
+        left: -20px;
+        top: 33px;
         background-color: #f1f1f1;
         @include border;
         @include shadow-layer1;
@@ -153,6 +160,10 @@ body {
         margin: 13px 10px;
         height: 150px;
         @include expansion-transition;
+
+        &.expand {
+          height: 240px;
+        }
 
         .menuitem-info {
           display: flex;
@@ -181,15 +192,19 @@ body {
               margin: 0;
               padding: 0;
               color: $mild-text-color;
+              opacity: 0;
+              @include expansion-transition;
             }
           }
 
           .weight-price-div {
+            position: absolute;
+            bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 20px;
-            //width: 100%;
+            width: 60%;
 
             p {
               font-family: 'Open Sans', sans-serif;
@@ -226,11 +241,13 @@ body {
             @include flex-c-c;
             width: 100%;
             height: 20px;
+
             &:first-child {
               //margin-top: 10px;
               padding-top: 10px;
               margin-bottom: 3px;
             }
+
             &:nth-child(3) {
               padding-bottom: 8px;
             }
@@ -238,13 +255,13 @@ body {
             .fa-icon {
               color: $accent-color;
               font-size: 12px;
+
               &.plus {
               }
+
               &.minus {
               }
-
             }
-
           }
 
           h6 {
@@ -266,9 +283,13 @@ body {
     background-color: rgba(255, 255, 255, 0.97);
     width: 100%;
     border-radius: 30px 30px 5px 5px;
-    bottom: 0;
+    bottom: -60vh;
     height: 70vh;
     @include page-transition;
+
+    &.expand {
+      bottom: 0;
+    }
 
     .cart-header {
       @include flex-sb-c;
@@ -283,6 +304,10 @@ body {
       .fa-arrow {
         color: $accent-color;
         @include expansion-transition;
+
+        &.expand {
+          transform: rotate(180deg);
+        }
       }
     }
 
@@ -302,6 +327,12 @@ body {
           font-size: 15px;
           font-weight: 200;
         }
+
+        p {
+          font-family: 'Open Sans', sans-serif;
+          font-size: 15px;
+          font-weight: 200;
+        }
       }
     }
 
@@ -309,6 +340,45 @@ body {
       @include flex-sb-c;
       width: 80%;
       height: 70px;
+      margin-bottom: 20px;
+
+      .order-button-div {
+        @include flex-c-c;
+        @include shadow-accent;
+        border-radius: 30px;
+        background-color: lighten($accent-color, 5%);
+        width: 150px;
+        height: 45px;
+        @include expansion-transition;
+
+        h5 {
+          @include margin-padding-0;
+          @include no-select;
+          font-family: 'Zilla Slab', serif;
+          font-size: 16px;
+          color: $card-color;
+        }
+      }
+
+      .cart-total-text-div {
+        @include flex-sb-c;
+        width: 26%;
+
+        p {
+          font-family: 'Open Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 200;
+          //margin-right: 30px;
+        }
+
+        h5 {
+          @include margin-padding-0;
+          color: $accent-color;
+          font-family: 'Zilla Slab', serif;
+          font-size: 23px;
+          font-weight: 600;
+        }
+      }
     }
   }
 }
