@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { faHome, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faTasks } from '@fortawesome/free-solid-svg-icons';
 import FAIcon from '../../../shared/components/FAIcon';
 
 function Topbar({ goHome, goOrders }) {
@@ -12,7 +12,7 @@ function Topbar({ goHome, goOrders }) {
         divClass="topbar-buttons-wrapper"
         clickFunc={goHome}
       />
-      <FAIcon icon={faShoppingBasket} iconClass="fa-shopping" divClass="topbar-buttons-wrapper" />
+      <FAIcon icon={faTasks} iconClass="fa-shopping" divClass="topbar-buttons-wrapper" />
     </div>
   );
 }
