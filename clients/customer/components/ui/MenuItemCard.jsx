@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 import FAIcon from '../../../shared/components/FAIcon';
 
-function MenuItemCard({ menuItem, expandMenuItem, selectedMenuItem }) {
+function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
+  function expandMenuItem(name) {
+    if (selectedMenuItem === name) {
+      setSelectedMenuItem('');
+    } else {
+      setSelectedMenuItem(name);
+    }
+  }
   function incrementItem() {}
 
   function decrementItem() {}
@@ -63,8 +70,8 @@ function MenuItemCard({ menuItem, expandMenuItem, selectedMenuItem }) {
 
 MenuItemCard.propTypes = {
   menuItem: PropTypes.object,
-  expandMenuItem: PropTypes.func,
   selectedMenuItem: PropTypes.string,
+  setSelectedMenuItem: PropTypes.func,
   name: PropTypes.string,
   img: PropTypes.string,
   description: PropTypes.string,

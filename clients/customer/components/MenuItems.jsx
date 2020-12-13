@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import { axiosGet } from '../../shared/helpers/api';
 import MenuItemCard from './ui/MenuItemCard';
+
 
 function MenuItems({ pageMode, categoryHeaderPos }) {
   const [selectedMenuItem, setSelectedMenuItem] = useState('');
   const [menuItemsData, setMenuItemsData] = useState([]);
-
-  async function getMenuItems() {
-    try {
-      const res = await axios.get(`/api/dishes/${pageMode.category}`);
-      setMenuItemsData(res.data.dishes);
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
 
   function expandMenuItem(name) {
     if (selectedMenuItem === name) {
@@ -22,6 +14,10 @@ function MenuItems({ pageMode, categoryHeaderPos }) {
     } else {
       setSelectedMenuItem(name);
     }
+  }
+  async function getMenuItems() {
+    const res = await axiosGet(`/api/dishes/${pageMode.category}`);
+    setMenuItemsData(res.dishes);
   }
 
   const dishes = menuItemsData.map((item) => (

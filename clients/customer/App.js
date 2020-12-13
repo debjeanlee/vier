@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './styles/menu.scss';
 import Home from './pages/Home';
 import Cart from './components/Cart';
 import Topbar from './components/ui/Topbar';
 
 function App() {
-  // function
   const [sessionData, setSessionData] = useState({});
   const [pageMode, setPageMode] = useState({ mode: 'home', category: '' });
 
@@ -29,7 +28,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <>
       <div className="main-div">
         <Topbar goHome={goHome} />
         {backdrop}
@@ -40,7 +39,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
+    </>
   );
 }
 
