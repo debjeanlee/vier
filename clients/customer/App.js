@@ -8,26 +8,34 @@ import Topbar from './components/ui/Topbar';
 function App() {
   // function
   const [sessionData, setSessionData] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [backdropWidth, setBackdropWidth] = useState('35');
+  const [pageMode, setPageMode] = useState({ mode: 'home', category: '' });
 
   function goHome() {
-    setSelectedCategory('');
-    setBackdropWidth('35');
+    setPageMode('');
+    setPageMode({ mode: 'home', category: '' });
+  }
+
+  let backdrop;
+  switch (pageMode.mode) {
+    case 'menuitems':
+      backdrop = <div className="backdrop-solid menuitems" />;
+      break;
+    case 'orders':
+      backdrop = <div className="backdrop-solid orders" />;
+      break;
+    default:
+      backdrop = <div className="backdrop-solid home" />;
+      break;
   }
 
   return (
     <Router>
       <div className="main-div">
         <Topbar goHome={goHome} />
-        <div className="backdrop-solid" style={{ width: `${backdropWidth}vw` }} />
+        {backdrop}
         <Switch>
           <Route>
-            <Home
-              setBackdropWidth={setBackdropWidth}
-              setSelectedCategory={setSelectedCategory}
-              selectedCategory={selectedCategory}
-            />
+            <Home setPageMode={setPageMode} pageMode={pageMode} />
             <Cart sessionData={sessionData} />
           </Route>
         </Switch>
