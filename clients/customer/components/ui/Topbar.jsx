@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faTasks } from '@fortawesome/free-solid-svg-icons';
+import FAIcon from '../../../shared/components/FAIcon';
 
-function Topbar({ goHome }) {
+function Topbar({ goHome, goOrders }) {
   return (
     <div className="topbar">
-      <div className="topbar-buttons-wrapper" role="button" onClick={goHome}>
-        <FontAwesomeIcon icon={faHome} className="fa-home" />
-      </div>
-      <div className="topbar-buttons-wrapper">
-        <FontAwesomeIcon icon={faTasks} className="fa-shopping" />
-      </div>
+      <FAIcon
+        icon={faHome}
+        iconClass="fa-home"
+        divClass="topbar-buttons-wrapper"
+        clickFunc={goHome}
+      />
+      <FAIcon icon={faTasks} iconClass="fa-shopping" divClass="topbar-buttons-wrapper" />
     </div>
   );
 }
