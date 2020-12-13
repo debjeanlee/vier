@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import FAIcon from '../../../shared/components/FAIcon';
 
 function CategoryCard({ categoryData, openCategory }) {
   return (
@@ -16,9 +17,7 @@ function CategoryCard({ categoryData, openCategory }) {
         <h2>{categoryData.name}</h2>
         <p>7 items</p>
       </div>
-      <div className="arrow-div">
-        <FontAwesomeIcon icon={faChevronRight} className="fa-arrow" />
-      </div>
+      <FAIcon icon={faChevronRight} iconClass="fa-arrow" divClass="arrow-div" />
     </div>
   );
 }
