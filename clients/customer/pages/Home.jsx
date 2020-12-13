@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Categories from '../components/Categories';
 import MenuItems from '../components/MenuItems';
+import Orders from './Orders';
 
-function Home({ setBackdropWidth, setSelectedCategory, selectedCategory }) {
+function Home({ setBackdropWidth, setPageMode, pageMode }) {
   const [categoriesData, setCategoriesData] = useState([]);
   const [categoryHeaderPos, setCategoryHeaderPos] = useState('100');
 
@@ -17,13 +18,8 @@ function Home({ setBackdropWidth, setSelectedCategory, selectedCategory }) {
     }
   }
 
-  useEffect(() => {
-    getCategories();
-  }, []);
-
   function openCategory(category) {
-    setSelectedCategory(category);
-    setBackdropWidth('70');
+    setPageMode({ mode: 'menuitems', category });
     setCategoryHeaderPos('15');
     window.scrollTo({
       top: 0,
@@ -32,16 +28,23 @@ function Home({ setBackdropWidth, setSelectedCategory, selectedCategory }) {
     });
   }
 
-  if (selectedCategory === '') {
-    return <Categories openCategory={openCategory} categoriesData={categoriesData} />;
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  if (pageMode.mode === 'menuitems') {
+    return <MenuItems pageMode={pageMode} categoryHeaderPos={categoryHeaderPos} />;
   }
-  return <MenuItems selectedCategory={selectedCategory} categoryHeaderPos={categoryHeaderPos} />;
+  if (pageMode.mode === 'orders') {
+    return <Orders />;
+  }
+  return <Categories openCategory={openCategory} categoriesData={categoriesData} />;
 }
 
 Home.propTypes = {
   setBackdropWidth: PropTypes.func,
-  setSelectedCategory: PropTypes.func,
-  selectedCategory: PropTypes.string,
+  setPageMode: PropTypes.func,
+  pageMode: PropTypes.object,
 };
 
 export default Home;
