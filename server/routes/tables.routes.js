@@ -18,6 +18,25 @@ router.get('/', async (req, res) => {
 });
 
 /**
+ * GET ONE SESSION BY TABLE NO
+ * @method GET
+ * @route '/api/tables/:tableNo'
+ * @returns single session - for customer side
+ */
+router.get('/:tableNo', async (req, res) => {
+  try {
+    const session = await Table.find({ tableNo: req.params.tableNo }).populate('sessionId');
+    if (session.sessionId === '') {
+      res.status(400).json({ message: 'Session does not exist' });
+    } else {
+      res.status(200).json({ session });
+    }
+  } catch (error) {
+    res.status(400).json({ message: 'Something went wrong' });
+  }
+});
+
+/**
  * FIND EMPTY TABLES
  * @method GET
  * @route '/api/tables/empty'
