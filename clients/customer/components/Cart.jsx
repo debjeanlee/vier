@@ -13,7 +13,6 @@ function Cart({ sessionData }) {
   function toggleExpandCart() {
     setExpandCart(!expandCart);
   }
-  console.log(sessionData);
   const cartTotal = calculateTotal(cartData);
   const cartItems = cartData.map((item) => <CartItemCard cartItem={item} key={item.name} />);
 
