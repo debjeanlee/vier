@@ -3,6 +3,21 @@ const router = require('express').Router();
 const Table = require('../models/table.models');
 
 /**
+ * GET ALL TABLES
+ * @method GET
+ * @route /api/tables
+ * @returns list of all tables with sessions populated
+ */
+router.get('/', async (req, res) => {
+  try {
+    const tables = await Table.find();
+    res.status(200).json({ tables });
+  } catch (error) {
+    res.status(400).json({ message: 'Something went wrong' });
+  }
+});
+
+/**
  * FIND EMPTY TABLES
  * @method GET
  * @route '/api/tables/empty'
