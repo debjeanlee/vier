@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import Icon from '../../../shared/uiComponents/Icon';
 
 function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
   function expandMenuItem(name) {
@@ -42,9 +43,7 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
         <div className="quantiy-count">
           <h6>5</h6>
         </div>
-        <div className="fa-icon-div">
-          <FontAwesomeIcon icon={faMinus} className="fa-icon minus" />
-        </div>
+        <Icon wrapClass="fa-icon-div" icon={faMinus} iconClass="fa-icon minus" />
       </div>
     </div>
   );
