@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { axiosPatch } from '../../../shared/helpers/api';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import FAIcon from '../../../shared/components/FAIcon';
@@ -25,10 +24,6 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantit
     getSessionData(tableno);
     socket.transmitCart();
   }
-
-  useEffect(() => {
-    socket.receiveCart(getSessionData);
-  });
 
   return (
     <div

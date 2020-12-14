@@ -1,9 +1,19 @@
 const socket = (io) => {
   io.on('connection', (socket) => {
-    const channel = `session-${socket.handshake.query.sessionID}`;
-    socket.join(channel);
+    let channel;
 
-    socket.on('cart', (data) => {
+    socket.on('disconnect', () => {
+      socket.disconnect();
+    });
+
+    socket.on('session', (data) => {
+      if (!channel) {
+        channel = `session-${data.sessionID}`;
+        socket.join(channel);
+      }
+    });
+
+    socket.on('cart', () => {
       socket.to(channel).emit('cart');
     });
   });
