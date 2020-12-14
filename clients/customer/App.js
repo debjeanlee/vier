@@ -15,11 +15,15 @@ function App() {
     setPageMode({ mode: 'home', category: '' });
   }
 
+  function goOrders() {
+    setPageMode({ mode: 'orders', category: '' });
+  }
+
   async function getSessionData(tableno) {
     try {
       const res = await axios.get(`/api/tables/${tableno}`);
-      console.log('session', res.data.session[0]);
-      setSessionData(res.data.session[0]);
+      console.log('session', res.data.table);
+      setSessionData(res.data.table);
     } catch (err) {
       console.log(err);
     }
@@ -43,7 +47,7 @@ function App() {
   return (
     <>
       <div className="main-div">
-        <Topbar goHome={goHome} />
+        <Topbar goHome={goHome} goOrders={goOrders} />
         {backdrop}
         <Switch>
           <Route path="/" exact>
@@ -55,7 +59,12 @@ function App() {
             <div className="main-div" />
           </Route>
           <Route path="/table/:tableno">
-            <Home setPageMode={setPageMode} pageMode={pageMode} getSessionData={getSessionData} />
+            <Home
+              setPageMode={setPageMode}
+              pageMode={pageMode}
+              getSessionData={getSessionData}
+              sessionData={sessionData}
+            />
             <Cart sessionData={sessionData} />
           </Route>
         </Switch>

@@ -12,7 +12,12 @@ function Topbar({ goHome, goOrders }) {
         divClass="topbar-buttons-wrapper"
         clickFunc={goHome}
       />
-      <FAIcon icon={faTasks} iconClass="fa-shopping" divClass="topbar-buttons-wrapper" />
+      <FAIcon
+        icon={faTasks}
+        iconClass="fa-shopping"
+        divClass="topbar-buttons-wrapper"
+        clickFunc={goOrders}
+      />
     </div>
   );
 }

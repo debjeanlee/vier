@@ -6,7 +6,7 @@ import Categories from '../components/Categories';
 import MenuItems from '../components/MenuItems';
 import Orders from './Orders';
 
-function Home({ pageMode, setPageMode, getSessionData }) {
+function Home({ pageMode, setPageMode, getSessionData, sessionData }) {
   const [menuData, setMenuData] = useState([]);
   const [categoryHeaderPos, setCategoryHeaderPos] = useState('100');
   const { tableno } = useParams();
@@ -41,7 +41,7 @@ function Home({ pageMode, setPageMode, getSessionData }) {
     );
   }
   if (pageMode.mode === 'orders') {
-    return <Orders />;
+    return <Orders sessionData={sessionData} />;
   }
   return <Categories openCategory={openCategory} menuData={menuData} />;
 }
