@@ -15,6 +15,10 @@ router.get('/active', async (req, res) => {
 });
 
 /**
+ * *MAYBE* GET SESSION BY ID
+ */
+
+/**
  * CREATE NEW SESSION - needs table no
  * @method POST
  * @route '/api/session/new'
@@ -23,15 +27,15 @@ router.get('/active', async (req, res) => {
  */
 router.post('/new', async (req, res) => {
   const table = await Table.findOne({ tableNo: req.body.tableNo });
-  if (table.sessionId) {
+  if (table.session) {
     return res.status(401).json({ message: 'Table is occupied' });
   }
   try {
     let count = await Session.countDocuments();
     count += 1;
-    const newSession = new Session({ sessionId: count });
+    const newSession = new Session({ session: count });
     await newSession.save();
-    table.sessionId = newSession._id;
+    table.session = newSession._id;
     await table.save();
     res.status(201).json({ message: `Session created at Table ${table.tableNo}.` });
   } catch (err) {
@@ -48,14 +52,14 @@ router.post('/new', async (req, res) => {
  */
 router.patch('/:tableNo', async (req, res) => {
   const table = await Table.findOne({ tableNo: req.params.tableNo });
-  if (!table.sessionId) {
+  if (!table.session) {
     return res.status(400).json({ message: 'No session found' });
   }
   try {
-    await Session.findByIdAndUpdate(table.sessionId, {
+    await Session.findByIdAndUpdate(table.session, {
       $set: { endTime: Date.now(), active: false },
     });
-    table.sessionId = undefined;
+    table.session = undefined;
     await table.save();
     res.status(200).json({ message: 'Session ended' });
   } catch (err) {
