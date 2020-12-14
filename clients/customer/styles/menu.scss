@@ -58,341 +58,346 @@ body {
   align-items: center;
   justify-content: flex-start;
   height: 700px;
+}
 
-  .home-page-div {
+.home-page-div {
+  width: 100%;
+  min-height: 80vh;
+}
+
+.category-main-div {
+  @include flex-c-c;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
+.category-card {
+  @include menu-card;
+  margin: 13px 10px;
+  height: 100px;
+
+  img {
+    object-fit: cover;
+    position: absolute;
+    border-radius: 20px;
+    width: 60px;
+    height: 60px;
+    left: -20px;
+    background-color: #f1f1f1;
+    @include border;
+    @include shadow-layer1;
+  }
+}
+
+.category-info {
+  display: flex;
+  flex-direction: column;
+  margin: 0 60px;
+
+  h2 {
+    @include ultra-font-defaults;
+    margin: 0 0 5px 0;
+    color: $title-color-dark;
+  }
+
+  p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: $mild-text-color;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.arrow-div {
+  @include flex-c-c;
+  position: absolute;
+  background-color: #f6f6f6;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  @include shadow-layer2;
+
+  .fa-arrow {
+    color: #e64253;
+  }
+}
+
+
+.category-header-div {
+  position: absolute;
+  left: 10vw;
+  top: 15vh;
+  @include page-transition;
+
+  h3 {
+    @include ultra-font-defaults;
+    font-size: 30px;
+    color: $card-color;
+  }
+}
+
+.menuitems-main-div {
+  @include flex-c-c;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+
+.menuitem-card {
+  @include menu-card;
+  margin: 13px 10px;
+  height: 150px;
+  @include expansion-transition;
+
+  img {
+    object-fit: cover;
+    position: absolute;
+    border-radius: 20px;
+    width: 77px;
+    height: 77px;
+    left: -20px;
+    top: 33px;
+    background-color: #f1f1f1;
+    @include border;
+    @include shadow-layer1;
+  }
+
+  &.expand {
+    height: 240px;
+  }
+}
+
+
+.menuitem-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 60%;
+  height: 60%;
+  margin: 0 0 0 25%;
+}
+
+.menuitem-title-description-div {
+  display: flex;
+  flex-direction: column;
+
+  //dish title
+  h4 {
+    font-family: 'Zilla Slab', serif;
+    font-weight: 700;
+    color: $title-color-dark;
+    margin: 0 0 5px 0;
+  }
+
+  //dish description
+  p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    color: $mild-text-color;
+    opacity: 0;
+    @include expansion-transition;
+  }
+}
+
+.weight-price-div {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  width: 60%;
+
+  p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: grey;
+    margin: 0;
+    padding: 0;
+  }
+
+  h6 {
+    font-family: 'Zilla Slab', serif;
+    color: $accent-color;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+.menuitem-quantity-div {
+  @include flex-sb-c;
+  @include shadow-layer2;
+  flex-direction: column;
+  position: absolute;
+  background-color: #f6f6f6;
+  right: -20px;
+  bottom: 25px;
+  width: 40px;
+  height: 90px;
+  border-radius: 40px;
+
+  .fa-icon-div {
+    @include flex-c-c;
     width: 100%;
-    min-height: 80vh;
+    height: 20px;
 
-    .category-main-div {
-      @include flex-c-c;
-      flex-direction: column;
-      margin-bottom: 100px;
-
-      img {
-        object-fit: cover;
-        position: absolute;
-        border-radius: 20px;
-        width: 60px;
-        height: 60px;
-        left: -20px;
-        background-color: #f1f1f1;
-        @include border;
-        @include shadow-layer1;
-
-      }
-
-      .category-card {
-        @include menu-card;
-        margin: 13px 10px;
-        height: 100px;
-
-        .category-info {
-          display: flex;
-          flex-direction: column;
-          margin: 0 60px;
-
-          h2 {
-            @include ultra-font-defaults;
-            margin: 0 0 5px 0;
-            color: $title-color-dark;
-          }
-
-          p {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 12px;
-            font-weight: 300;
-            color: $mild-text-color;
-            margin: 0;
-            padding: 0;
-          }
-        }
-
-        .arrow-div {
-          @include flex-c-c;
-          position: absolute;
-          background-color: #f6f6f6;
-          right: -20px;
-          width: 40px;
-          height: 40px;
-          border-radius: 40px;
-          @include shadow-layer2;
-
-          .fa-arrow {
-            color: #e64253;
-          }
-        }
-      }
+    &:first-child {
+      //margin-top: 10px;
+      padding-top: 10px;
+      margin-bottom: 3px;
     }
 
-    .category-header-div {
-      position: absolute;
-      left: 10vw;
-      top: 15vh;
-      @include page-transition;
-
-      h3 {
-        @include ultra-font-defaults;
-        font-size: 30px;
-        color: $card-color;
-      }
+    &:nth-child(3) {
+      padding-bottom: 8px;
     }
 
-    .menuitems-main-div {
-      @include flex-c-c;
-      flex-direction: column;
-      margin-top: 100px;
+    .fa-icon {
+      color: $accent-color;
+      font-size: 12px;
 
-      img {
-        object-fit: cover;
-        position: absolute;
-        border-radius: 20px;
-        width: 77px;
-        height: 77px;
-        left: -20px;
-        top: 33px;
-        background-color: #f1f1f1;
-        @include border;
-        @include shadow-layer1;
+      &.plus {
       }
 
-      .menuitem-card {
-        @include menu-card;
-        margin: 13px 10px;
-        height: 150px;
-        @include expansion-transition;
-
-        &.expand {
-          height: 240px;
-        }
-
-        .menuitem-info {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          width: 60%;
-          height: 60%;
-          margin: 0 0 0 25%;
-
-          .menuitem-title-description-div {
-            display: flex;
-            flex-direction: column;
-
-            //dish title
-            h4 {
-              font-family: 'Zilla Slab', serif;
-              font-weight: 700;
-              color: $title-color-dark;
-              margin: 0 0 5px 0;
-            }
-
-            //dish description
-            p {
-              font-family: 'Open Sans', sans-serif;
-              font-size: 13px;
-              margin: 0;
-              padding: 0;
-              color: $mild-text-color;
-              opacity: 0;
-              @include expansion-transition;
-            }
-          }
-
-          .weight-price-div {
-            position: absolute;
-            bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 20px;
-            width: 60%;
-
-            p {
-              font-family: 'Open Sans', sans-serif;
-              font-size: 12px;
-              font-weight: 300;
-              color: grey;
-              margin: 0;
-              padding: 0;
-            }
-
-            h6 {
-              font-family: 'Zilla Slab', serif;
-              color: $accent-color;
-              font-size: 20px;
-              margin: 0;
-              padding: 0;
-            }
-          }
-        }
-
-        .menuitem-quantity-div {
-          @include flex-sb-c;
-          @include shadow-layer2;
-          flex-direction: column;
-          position: absolute;
-          background-color: #f6f6f6;
-          right: -20px;
-          bottom: 25px;
-          width: 40px;
-          height: 90px;
-          border-radius: 40px;
-
-          .fa-icon-div {
-            @include flex-c-c;
-            width: 100%;
-            height: 20px;
-
-            &:first-child {
-              //margin-top: 10px;
-              padding-top: 10px;
-              margin-bottom: 3px;
-            }
-
-            &:nth-child(3) {
-              padding-bottom: 8px;
-            }
-
-            .fa-icon {
-              color: $accent-color;
-              font-size: 12px;
-
-              &.plus {
-              }
-
-              &.minus {
-              }
-            }
-          }
-
-          h6 {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 13px;
-            margin: 0;
-          }
-        }
+      &.minus {
       }
     }
   }
 
-  .cart-div {
-    @include menu-card;
-    @include flex-sb-c;
-    position: fixed;
-    flex-direction: column;
+  h6 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
     margin: 0;
-    background-color: rgba(255, 255, 255, 0.97);
-    width: 100%;
-    border-radius: 30px 30px 5px 5px;
-    bottom: -60vh;
-    height: 70vh;
-    @include page-transition;
+  }
+}
+
+
+.cart-div {
+  @include menu-card;
+  @include flex-sb-c;
+  position: fixed;
+  flex-direction: column;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.97);
+  width: 100%;
+  border-radius: 30px 30px 5px 5px;
+  bottom: -60vh;
+  height: 70vh;
+  @include page-transition;
+
+  &.expand {
+    bottom: 0;
+  }
+}
+
+.cart-header {
+  @include flex-sb-c;
+  width: 80%;
+
+  h4 {
+    color: $title-color-dark;
+    font-family: 'Zilla Slab', serif;
+    font-size: 20px;
+  }
+
+  .fa-arrow {
+    color: $accent-color;
+    @include expansion-transition;
 
     &.expand {
-      bottom: 0;
+      transform: rotate(180deg);
     }
+  }
+}
 
-    .cart-header {
-      @include flex-sb-c;
-      width: 80%;
+.cart-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  width: 80%;
+  overflow-y: scroll;
+}
 
-      h4 {
-        color: $title-color-dark;
-        font-family: 'Zilla Slab', serif;
-        font-size: 20px;
-      }
+.cart-item-card {
+  @include flex-sb-c;
+  width: 100%;
+  height: 50px;
 
-      .fa-arrow {
-        color: $accent-color;
-        @include expansion-transition;
+  .cart-item-name-div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 70%;
 
-        &.expand {
-          transform: rotate(180deg);
-        }
-      }
+    h6 {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 200;
     }
+  }
 
-    .cart-body {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      height: 100%;
-      width: 80%;
-      overflow-y: scroll;
+  .cart-quantity-price-div {
+    @include flex-sb-c;
+    width: 25%;
 
-      .cart-item-card {
-        @include flex-sb-c;
-        width: 100%;
-        height: 50px;
-
-        .cart-item-name-div {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          width: 70%;
-
-          h6 {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 15px;
-            font-weight: 200;
-          }
-        }
-
-        .cart-quantity-price-div {
-          @include flex-sb-c;
-          width: 25%;
-
-          p {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 15px;
-            font-weight: 200;
-          }
-        }
-      }
+    p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 200;
     }
+  }
+}
 
-    .cart-footer {
-      @include flex-sb-c;
-      width: 80%;
-      height: 70px;
-      margin-bottom: 20px;
 
-      .order-button-div {
-        @include flex-c-c;
-        @include shadow-accent;
-        border-radius: 30px;
-        background-color: lighten($accent-color, 5%);
-        width: 150px;
-        height: 45px;
-        @include expansion-transition;
+.cart-footer {
+  @include flex-sb-c;
+  width: 80%;
+  height: 70px;
+  margin-bottom: 20px;
+}
 
-        h5 {
-          @include margin-padding-0;
-          @include no-select;
-          font-family: 'Zilla Slab', serif;
-          font-size: 16px;
-          color: $card-color;
-        }
-      }
+.order-button-div {
+  @include flex-c-c;
+  @include shadow-accent;
+  border-radius: 30px;
+  background-color: lighten($accent-color, 5%);
+  width: 150px;
+  height: 45px;
+  @include expansion-transition;
 
-      .cart-total-text-div {
-        @include flex-sb-c;
-        width: 26%;
+  h5 {
+    @include margin-padding-0;
+    @include no-select;
+    font-family: 'Zilla Slab', serif;
+    font-size: 16px;
+    color: $card-color;
+  }
+}
 
-        p {
-          font-family: 'Open Sans', sans-serif;
-          font-size: 12px;
-          font-weight: 200;
-          //margin-right: 30px;
-        }
+.cart-total-text-div {
+  @include flex-sb-c;
+  width: 26%;
 
-        h5 {
-          @include margin-padding-0;
-          color: $accent-color;
-          font-family: 'Zilla Slab', serif;
-          font-size: 23px;
-          font-weight: 600;
-        }
-      }
-    }
+  p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 200;
+    //margin-right: 30px;
+  }
+
+  h5 {
+    @include margin-padding-0;
+    color: $accent-color;
+    font-family: 'Zilla Slab', serif;
+    font-size: 23px;
+    font-weight: 600;
   }
 }

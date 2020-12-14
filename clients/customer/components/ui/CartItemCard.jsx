@@ -9,7 +9,7 @@ function CartItemCard({ cartItem }) {
       </div>
       <div className="cart-quantity-price-div">
         <div>x{cartItem.quantity}</div>
-        <p>${cartItem.dish.price}</p>
+        <p>${cartItem.dish.price * cartItem.quantity}</p>
       </div>
     </div>
   );

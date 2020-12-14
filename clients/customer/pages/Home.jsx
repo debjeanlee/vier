@@ -43,6 +43,7 @@ function Home({ pageMode, setPageMode, getSessionData, sessionData, cartData }) 
         categoryHeaderPos={categoryHeaderPos}
         cartData={cartData}
         sessionId={sessionData._id}
+        getSessionData={getSessionData}
       />
     );
   }

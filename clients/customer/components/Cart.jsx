@@ -1,34 +1,35 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { cartData } from '../data/testData';
 import { calculateTotal } from '../../shared/helpers/func';
 import CartItemCard from './ui/CartItemCard';
 
-function Cart({ cartData }) {
+function Cart({ cartData, sessionId, getSessionData }) {
   const [expandCart, setExpandCart] = useState(false);
-  console.log('cart', cartData);
+  const { tableno } = useParams();
 
   function toggleExpandCart() {
     setExpandCart(!expandCart);
   }
 
-  // const cartTotal = calculateTotal(cartData);
   let cartItems = '';
+  let cartTotal = 0;
   if (cartData) {
+    cartTotal = calculateTotal(cartData);
     cartItems = cartData.map((item) => <CartItemCard cartItem={item} key={item.dish.name} />);
   }
 
-  // async function placeOrder() {
-  //   console.log('place order');
-  //   try {
-  //
-  //   } catch (err) {
-  //     console.log(err)
-  //   };
-  //
-  // }
+  async function placeOrder() {
+    try {
+      const res = await axios.patch(`/api/orders/new/${sessionId}`);
+      getSessionData(tableno);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div className={expandCart === true ? 'cart-div expand' : 'cart-div'}>
@@ -41,13 +42,12 @@ function Cart({ cartData }) {
       </div>
       <div className="cart-body">{cartItems}</div>
       <div className="cart-footer">
-        <div
-          className="order-button-div"
-          // onClick={placeOrder}
-        >
+        <div className="order-button-div" onClick={placeOrder}>
           <h5>Place Order</h5>
         </div>
-        <div className="cart-total-text-div">{/* <p>Total: </p> <h5>${cartTotal}</h5> */}</div>
+        <div className="cart-total-text-div">
+          <p>Total: </p> <h5>${cartTotal}</h5>
+        </div>
       </div>
     </div>
   );
@@ -55,6 +55,8 @@ function Cart({ cartData }) {
 
 Cart.propTypes = {
   cartData: PropTypes.array,
+  sessionId: PropTypes.string,
+  getSessionData: PropTypes.func,
 };
 
 export default Cart;
