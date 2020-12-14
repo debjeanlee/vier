@@ -29,7 +29,6 @@ function MenuItemCard({
         dishId: menuItem._id,
       });
       getSessionData(tableno);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -41,7 +40,6 @@ function MenuItemCard({
         dishId: menuItem._id,
       });
       getSessionData(tableno);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }

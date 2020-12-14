@@ -1,7 +1,7 @@
 function calculateTotal(cart) {
   let total = 0;
   cart.forEach((item) => {
-    total += item.price;
+    total += item.dish.price * item.quantity;
   });
   return total;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, useParams, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import './styles/menu.scss';
 import axios from 'axios';
 import Home from './pages/Home';
@@ -14,6 +14,7 @@ function App() {
     setPageMode({ mode: 'home', category: '' });
   }
 
+  // FUNCTION CALL TO RE-RENDER
   async function getSessionData(tableno) {
     try {
       const res = await axios.get(`/api/tables/${tableno}`);
@@ -60,7 +61,7 @@ function App() {
               cartData={sessionData.cart}
               sessionData={sessionData}
             />
-            <Cart cartData={sessionData.cart} />
+            <Cart cartData={sessionData.cart} sessionId={sessionData._id} getSessionData={getSessionData} />
           </Route>
         </Switch>
       </div>
