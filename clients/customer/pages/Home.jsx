@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import axiosGet from 'axios';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import Categories from '../components/Categories';
 import MenuItems from '../components/MenuItems';
 import Orders from './Orders';
 
-function Home({ pageMode, setPageMode }) {
+function Home({ pageMode, setPageMode, getSessionData }) {
   const [menuData, setMenuData] = useState([]);
   const [categoryHeaderPos, setCategoryHeaderPos] = useState('100');
+  const { tableno } = useParams();
+  console.log('home tableno:', tableno);
 
   async function getMenu() {
     try {
-      const res = await axiosGet('/api/dishes');
+      const res = await axios.get('/api/dishes');
       setMenuData(res.data.menuItems);
     } catch (err) {
       throw new Error(err);
@@ -30,6 +33,7 @@ function Home({ pageMode, setPageMode }) {
 
   useEffect(() => {
     getMenu();
+    getSessionData(tableno);
   }, []);
 
   if (pageMode.mode === 'menuitems') {
@@ -46,6 +50,7 @@ function Home({ pageMode, setPageMode }) {
 Home.propTypes = {
   setPageMode: PropTypes.func,
   pageMode: PropTypes.object,
+  getSessionData: PropTypes.func,
 };
 
 export default Home;
