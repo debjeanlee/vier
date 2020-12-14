@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { axiosGet } from '../../shared/helpers/api';
 import TableCard from '../components/ui/TableCard';
 
 function Dashboard() {
   const [restaurantData, setRestaurantData] = useState([]);
 
   async function getRestaurantData() {
-    try {
-      const res = await axios.get('/api/tables');
-      setRestaurantData(res.data.tables);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = axiosGet('/api/tables');
+    setRestaurantData(res.tables);
   }
 
   let tables = '';
