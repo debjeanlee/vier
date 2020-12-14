@@ -6,7 +6,7 @@ import Categories from '../components/Categories';
 import MenuItems from '../components/MenuItems';
 import Orders from './Orders';
 
-function Home({ pageMode, setPageMode, getSessionData }) {
+function Home({ pageMode, setPageMode, getSessionData, sessionData, cartData }) {
   const [menuData, setMenuData] = useState([]);
   const [categoryHeaderPos, setCategoryHeaderPos] = useState('100');
   const { tableno } = useParams();
@@ -37,7 +37,13 @@ function Home({ pageMode, setPageMode, getSessionData }) {
 
   if (pageMode.mode === 'menuitems') {
     return (
-      <MenuItems pageMode={pageMode} menuData={menuData} categoryHeaderPos={categoryHeaderPos} />
+      <MenuItems
+        pageMode={pageMode}
+        menuData={menuData}
+        categoryHeaderPos={categoryHeaderPos}
+        cartData={cartData}
+        sessionId={sessionData._id}
+      />
     );
   }
   if (pageMode.mode === 'orders') {
@@ -50,6 +56,9 @@ Home.propTypes = {
   setPageMode: PropTypes.func,
   pageMode: PropTypes.object,
   getSessionData: PropTypes.func,
+  cartData: PropTypes.array,
+  _id: PropTypes.string,
+  sessionData: PropTypes.object,
 };
 
 export default Home;
