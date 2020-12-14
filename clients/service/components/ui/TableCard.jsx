@@ -1,28 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { axiosPatch, axiosPost } from '../../../shared/helpers/api';
 
 function TableCard({ tableData, getRestaurantData }) {
-  console.log('tableData', tableData);
-
   async function createSession() {
-    try {
-      await axios.post('/api/session/new', {
-        tableNo: tableData.tableNo,
-      });
-      getRestaurantData();
-    } catch (err) {
-      console.log(err);
-    }
+    await axiosPost('/api/session/new', {
+      tableNo: tableData.tableNo,
+    });
+    getRestaurantData();
   }
 
   async function endSession() {
-    try {
-      await axios.patch(`/api/session/${tableData.tableNo}`);
-      getRestaurantData();
-    } catch (err) {
-      console.log(err);
-    }
+    await axiosPatch(`/api/session/${tableData.tableNo}`);
+    getRestaurantData();
   }
 
   return (
