@@ -25,6 +25,15 @@ export const axiosPost = async (url, data) => {
   }
 };
 
+export const axiosPatch = async (url, data) => {
+  try {
+    const res = await axios.patch(url, data);
+    return res;
+  } catch (error) {
+    return null;
+  }
+};
+
 // export const axiosPut = async (url, data, token) => {
 //   let header = token ? authHeader(token) : {};
 //   try {

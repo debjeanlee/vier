@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { axiosPatch } from '../../../shared/helpers/api';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import FAIcon from '../../../shared/components/FAIcon';
+import socket from '../../../shared/helpers/socket';
 
-function MenuItemCard({
-  menuItem,
-  selectedMenuItem,
-  setSelectedMenuItem,
-  quantity,
-  sessionId,
-  getSessionData,
-}) {
+function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantity, sessionId, getSessionData }) {
   const { tableno } = useParams();
 
   function expandMenuItem(name) {
@@ -23,36 +18,22 @@ function MenuItemCard({
     }
   }
 
-  async function incrementItem() {
-    try {
-      const res = await axios.patch(`/api/cart/add/${sessionId}`, {
-        dishId: menuItem._id,
-      });
-      getSessionData(tableno);
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
+  async function modifyItem(modType) {
+    await axiosPatch(`/api/cart/${modType}/${sessionId}`, {
+      dishId: menuItem._id,
+    });
+    getSessionData(tableno);
+    socket.transmitCart();
   }
 
-  async function decrementItem() {
-    try {
-      const res = await axios.patch(`/api/cart/decrease/${sessionId}`, {
-        dishId: menuItem._id,
-      });
-      getSessionData(tableno);
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  useEffect(() => {
+    socket.receiveCart(getSessionData);
+  });
 
   return (
     <div
       className={
-        menuItem.name === selectedMenuItem && menuItem.description !== ''
-          ? 'menuitem-card expand'
-          : 'menuitem-card'
+        menuItem.name === selectedMenuItem && menuItem.description !== '' ? 'menuitem-card expand' : 'menuitem-card'
       }
       key={menuItem.name}
     >
@@ -66,9 +47,7 @@ function MenuItemCard({
       >
         <div className="menuitem-title-description-div">
           <h4>{menuItem.name}</h4>
-          <p style={menuItem.name === selectedMenuItem ? { opacity: `1` } : {}}>
-            {menuItem.description}
-          </p>
+          <p style={menuItem.name === selectedMenuItem ? { opacity: `1` } : {}}>{menuItem.description}</p>
         </div>
         <div className="weight-price-div">
           <p>250g</p>
@@ -79,12 +58,7 @@ function MenuItemCard({
         </div>
       </div>
       <div className="menuitem-quantity-div">
-        <FAIcon
-          icon={faPlus}
-          iconClass="fa-icon plus"
-          divClass="fa-icon-div"
-          clickFunc={incrementItem}
-        />
+        <FAIcon icon={faPlus} iconClass="fa-icon plus" divClass="fa-icon-div" clickFunc={() => modifyItem('add')} />
         <div className="quantiy-count">
           <h6>{quantity}</h6>
         </div>
@@ -92,7 +66,7 @@ function MenuItemCard({
           icon={faMinus}
           iconClass="fa-icon minus"
           divClass="fa-icon-div"
-          clickFunc={decrementItem}
+          clickFunc={() => modifyItem('decrease')}
         />
       </div>
     </div>
