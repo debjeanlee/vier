@@ -1,13 +1,23 @@
 import io from 'socket.io/client-dist/socket.io.min.js';
 
-const socket = io.connect(process.env.SERVER);
+export default (() => {
+  let socket;
 
-export const transmit = () =>
-  socket.emit('chat', {
-    message: '',
-  });
+  const connect = (sessionID) => {
+    socket = io.connect(process.env.SERVER, { query: sessionID });
+  };
 
-export const receive = () =>
-  socket.on('chat', {
-    message: '',
-  });
+  const transmit = () =>
+    socket.emit('cart', {
+      message: '',
+    });
+
+  const receive = () =>
+    socket.on('cart', {
+      message: '',
+    });
+
+  return {
+    connect,
+  };
+})();
