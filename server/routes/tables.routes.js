@@ -1,18 +1,31 @@
 const router = require('express').Router();
 
 const Table = require('../models/table.models');
-const Order = require('../models/order.models');
-const Session = require('../models/session.models');
 
 /**
- * GET ALL TABLES
+ * GET ALL TABLES - for service side
  * @method GET
  * @route /api/tables
  * @returns list of all tables with sessions populated
  */
 router.get('/', async (req, res) => {
   try {
-    const tables = await Table.find();
+    const tables = await Table.find()
+      .populate({
+        path: 'session',
+        populate: [
+          {
+            path: 'orders',
+            populate: {
+              path: 'items.dish',
+            },
+          },
+          {
+            path: 'cart.dish',
+          },
+        ],
+      })
+      .exec();
     res.status(200).json({ tables });
   } catch (error) {
     res.status(400).json({ message: 'Something went wrong' });
@@ -30,7 +43,8 @@ router.get('/:tableNo', async (req, res) => {
     const table = await Table.findOne({ tableNo: req.params.tableNo })
       .populate({
         path: 'session',
-        populate: [{
+        populate: [
+          {
             path: 'orders',
             populate: {
               path: 'items.dish',
