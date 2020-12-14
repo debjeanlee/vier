@@ -1,0 +1,40 @@
+@import "clients/shared/styles/variables";
+@import "clients/shared/styles/mixins";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,100&display=swap");
+
+body {
+  background-color: $purple;
+  color: $card-color;
+  font-family: "Roboto", sans-serif;
+  padding: 10px 15px;
+}
+
+h1 {
+  margin: 5px;
+  font-weight: 900;
+}
+
+h3 {
+  font-weight: 500;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  @include menu-card;
+  width: 420px;
+  height: 80px;
+  margin: 10px auto;
+  color: $title-color-dark;
+  padding: 0 20px;
+}
+
+.qty {
+  color: $accent-color;
+  margin-left: 15px;
+  font-weight: 700;
+}
