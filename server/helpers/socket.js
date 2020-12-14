@@ -1,8 +1,7 @@
 const socket = (io) => {
   io.on('connection', (socket) => {
-    console.log('scoket', socket);
-    console.log('scoket', socket.handshake);
-    console.log('scoket', socket.handshake.query);
+    const channel = `session-${socket.handshake.query.sessionID}`;
+    socket.join(channel);
 
     socket.on('chat', (data) => {
       //   io.sockets.emit('chat', data);
