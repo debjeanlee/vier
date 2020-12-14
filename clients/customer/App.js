@@ -6,6 +6,7 @@ import socket from '../shared/helpers/socket';
 import Home from './pages/Home';
 import Cart from './components/Cart';
 import Topbar from './components/ui/Topbar';
+import Orders from './pages/Orders';
 
 function App() {
   const [sessionData, setSessionData] = useState({});
@@ -15,10 +16,15 @@ function App() {
     setPageMode({ mode: 'home', category: '' });
   }
 
+  // FUNCTION CALL TO RE-RENDER
   async function getSessionData(tableno) {
     const res = await axiosGet(`/api/tables/${tableno}`);
     setSessionData(res.table.session);
     socket.connect(res.table.session.session);
+  }
+
+  function goOrders() {
+    setPageMode({ mode: 'orders', category: '' });
   }
 
   let backdrop;
@@ -39,7 +45,7 @@ function App() {
   return (
     <>
       <div className="main-div">
-        <Topbar goHome={goHome} />
+        <Topbar goHome={goHome} goOrders={goOrders} />
         {backdrop}
         <Switch>
           <Route path="/" exact>
@@ -58,7 +64,7 @@ function App() {
               cartData={sessionData.cart}
               sessionData={sessionData}
             />
-            <Cart cartData={sessionData.cart} />
+            <Cart cartData={sessionData.cart} sessionId={sessionData._id} getSessionData={getSessionData} />
           </Route>
         </Switch>
       </div>
