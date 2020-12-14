@@ -23,7 +23,6 @@ function Cart({ cartData, sessionId, getSessionData }) {
   }
 
   async function placeOrder() {
-    console.log('place order');
     try {
       const res = await axios.patch(`/api/orders/new/${sessionId}`);
       getSessionData(tableno);
@@ -57,6 +56,7 @@ function Cart({ cartData, sessionId, getSessionData }) {
 Cart.propTypes = {
   cartData: PropTypes.array,
   sessionId: PropTypes.string,
+  getSessionData: PropTypes.func,
 };
 
 export default Cart;
