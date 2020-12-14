@@ -23,6 +23,10 @@ function App() {
     socket.connect(res.table.session.session);
   }
 
+  function goOrders() {
+    setPageMode({ mode: 'orders', category: '' });
+  }
+
   let backdrop;
   switch (pageMode.mode) {
     case 'menuitems':
@@ -41,7 +45,7 @@ function App() {
   return (
     <>
       <div className="main-div">
-        <Topbar goHome={goHome} />
+        <Topbar goHome={goHome} goOrders={goOrders} />
         {backdrop}
         <Switch>
           <Route path="/" exact>
