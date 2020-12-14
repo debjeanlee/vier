@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const tableSchema = new Schema({
   tableNo: { type: Number, required: true, unique: true },
-  sessionId: {
+  session: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Session',
   },
