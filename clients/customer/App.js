@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, useParams, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import './styles/menu.scss';
-import axios from 'axios';
+import { axiosGet } from '../shared/helpers/api';
+import socket from '../shared/helpers/socket';
 import Home from './pages/Home';
 import Cart from './components/Cart';
 import Topbar from './components/ui/Topbar';
@@ -15,12 +16,9 @@ function App() {
   }
 
   async function getSessionData(tableno) {
-    try {
-      const res = await axios.get(`/api/tables/${tableno}`);
-      setSessionData(res.data.table.session);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await axiosGet(`/api/tables/${tableno}`);
+    setSessionData(res.table.session);
+    socket.connect(res.table.session.session);
   }
 
   let backdrop;
