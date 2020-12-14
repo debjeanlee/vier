@@ -1,12 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const http = require('http');
+const socketIO = require('socket.io');
 const passport = require('./configs/passport.config');
-const sockets = require('./helpers/sockets');
+const socket = require('./helpers/socket');
 
 const port = process.env.PORT;
 const app = express();
 const server = http.createServer(app);
+const io = socketIO(server);
 
 require('./configs/mongo.config');
 
@@ -15,8 +17,7 @@ app.use('/', express.static('dist'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-
-sockets(server);
+socket(io);
 
 app.use('/api', require('./routes/index.routes'));
 
