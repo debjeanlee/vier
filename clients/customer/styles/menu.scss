@@ -413,7 +413,13 @@ h5 {
     width: 85%;
     margin: 13px auto;
     padding: 10px 15px;
+    height: 120px;
+    overflow: scroll;
     @include expansion-transition;
+
+    &.expand {
+      height: 480px;
+    }
   }
 
   h4 {
@@ -421,13 +427,20 @@ h5 {
     margin: 20px 10px 8px 10px;
   }
 
-  &.expand {
-    height: 240px;
+  .fa-arrow {
+    color: $accent-color;
+    @include expansion-transition;
+    margin: 20px 20px 8px 10px;
+
+    &.expand {
+      transform: rotate(180deg);
+    }
   }
 }
 
 .card-header {
   @include ultra-font-defaults;
+  @include flex-sb-c;
   margin-left: 10px;
 }
 
