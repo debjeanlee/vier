@@ -19,7 +19,7 @@ function App() {
   async function getSessionData(tableno) {
     const res = await axiosGet(`/api/tables/${tableno}`);
     setSessionData(res.table.session);
-    socket.connect(res.table.session.session);
+    socket.session(res.table.session.session);
   }
 
   function goOrders() {
@@ -39,7 +39,12 @@ function App() {
       break;
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    socket.connect();
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <>
@@ -63,11 +68,7 @@ function App() {
               cartData={sessionData.cart}
               sessionData={sessionData}
             />
-            <Cart
-              cartData={sessionData.cart}
-              sessionId={sessionData._id}
-              getSessionData={getSessionData}
-            />
+            <Cart cartData={sessionData.cart} sessionId={sessionData._id} getSessionData={getSessionData} />
           </Route>
         </Switch>
       </div>
