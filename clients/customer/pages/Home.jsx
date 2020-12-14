@@ -50,6 +50,7 @@ Home.propTypes = {
   setPageMode: PropTypes.func,
   pageMode: PropTypes.object,
   getSessionData: PropTypes.func,
+  sessionData: PropTypes.object,
 };
 
 export default Home;
