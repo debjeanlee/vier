@@ -5,11 +5,11 @@ function CartItemCard({ cartItem }) {
   return (
     <div className="cart-item-card">
       <div className="cart-item-name-div">
-        <h6>{cartItem.name}</h6>
+        <h6>{cartItem.dish.name}</h6>
       </div>
       <div className="cart-quantity-price-div">
-        <div>x2</div>
-        <p>${cartItem.price}</p>
+        <div>x{cartItem.quantity}</div>
+        <p>${cartItem.dish.price}</p>
       </div>
     </div>
   );

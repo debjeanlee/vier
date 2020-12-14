@@ -6,14 +6,19 @@ import { cartData } from '../data/testData';
 import { calculateTotal } from '../../shared/helpers/func';
 import CartItemCard from './ui/CartItemCard';
 
-function Cart({ sessionData }) {
+function Cart({ cartData }) {
   const [expandCart, setExpandCart] = useState(false);
+  console.log('cart', cartData);
 
   function toggleExpandCart() {
     setExpandCart(!expandCart);
   }
-  const cartTotal = calculateTotal(cartData);
-  const cartItems = cartData.map((item) => <CartItemCard cartItem={item} key={item.name} />);
+
+  // const cartTotal = calculateTotal(cartData);
+  let cartItems = '';
+  if (cartData) {
+    cartItems = cartData.map((item) => <CartItemCard cartItem={item} key={item.dish.name} />);
+  }
 
   // async function placeOrder() {
   //   console.log('place order');
@@ -42,16 +47,14 @@ function Cart({ sessionData }) {
         >
           <h5>Place Order</h5>
         </div>
-        <div className="cart-total-text-div">
-          <p>Total: </p> <h5>${cartTotal}</h5>
-        </div>
+        <div className="cart-total-text-div">{/* <p>Total: </p> <h5>${cartTotal}</h5> */}</div>
       </div>
     </div>
   );
 }
 
 Cart.propTypes = {
-  sessionData: PropTypes.object,
+  cartData: PropTypes.array,
 };
 
 export default Cart;
