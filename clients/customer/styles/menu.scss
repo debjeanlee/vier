@@ -312,8 +312,10 @@ body {
     }
 
     .cart-body {
-      @include flex-c-c;
+      display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      height: 100%;
       width: 80%;
       overflow-y: scroll;
 

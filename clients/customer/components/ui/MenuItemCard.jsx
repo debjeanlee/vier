@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import FAIcon from '../../../shared/components/FAIcon';
 
-function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
+function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantity, sessionId }) {
   function expandMenuItem(name) {
     if (selectedMenuItem === name) {
       setSelectedMenuItem('');
@@ -11,9 +12,24 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
       setSelectedMenuItem(name);
     }
   }
-  function incrementItem() {}
 
-  function decrementItem() {}
+  // let cartIndex = cartData.
+
+  async function incrementItem() {
+    console.log('increase');
+    try {
+      const res = axios.patch(`/api/cart/increase/${sessionId}`, {
+        dishId: menuItem._id,
+      });
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function decrementItem() {
+    console.log('decrease');
+  }
 
   return (
     <div
@@ -54,7 +70,7 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {
           clickFunc={incrementItem}
         />
         <div className="quantiy-count">
-          <h6>5</h6>
+          <h6>{quantity}</h6>
         </div>
         <FAIcon
           icon={faMinus}
@@ -74,6 +90,8 @@ MenuItemCard.propTypes = {
   name: PropTypes.string,
   img: PropTypes.string,
   description: PropTypes.string,
+  sessionId: PropTypes.string,
+  quantity: PropTypes.number,
 };
 
 export default MenuItemCard;
