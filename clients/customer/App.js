@@ -6,6 +6,7 @@ import socket from '../shared/helpers/socket';
 import Home from './pages/Home';
 import Cart from './components/Cart';
 import Topbar from './components/ui/Topbar';
+import Orders from './pages/Orders';
 
 function App() {
   const [sessionData, setSessionData] = useState({});
@@ -20,6 +21,10 @@ function App() {
     const res = await axiosGet(`/api/tables/${tableno}`);
     setSessionData(res.table.session);
     socket.connect(res.table.session.session);
+  }
+
+  function goOrders() {
+    setPageMode({ mode: 'orders', category: '' });
   }
 
   let backdrop;
@@ -40,7 +45,7 @@ function App() {
   return (
     <>
       <div className="main-div">
-        <Topbar goHome={goHome} />
+        <Topbar goHome={goHome} goOrders={goOrders} />
         {backdrop}
         <Switch>
           <Route path="/" exact>

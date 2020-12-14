@@ -3,8 +3,8 @@ const socket = (io) => {
     const channel = `session-${socket.handshake.query.sessionID}`;
     socket.join(channel);
 
-    socket.on('chat', (data) => {
-      //   io.sockets.emit('chat', data);
+    socket.on('cart', (data) => {
+      socket.to(channel).emit('cart');
     });
   });
 };

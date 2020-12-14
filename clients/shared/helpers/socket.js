@@ -8,17 +8,16 @@ export default (() => {
     socket.on('connect', function (data) {});
   };
 
-  const transmit = () =>
-    socket.emit('cart', {
-      message: '',
-    });
+  const transmitCart = () => socket.emit('cart');
 
-  const receive = () =>
-    socket.on('cart', {
-      message: '',
+  const receiveCart = (cb) =>
+    socket.on('cart', () => {
+      cb();
     });
 
   return {
     connect,
+    transmitCart,
+    receiveCart,
   };
 })();
