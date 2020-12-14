@@ -15,6 +15,10 @@ router.get('/active', async (req, res) => {
 });
 
 /**
+ * *MAYBE* GET SESSION BY ID
+ */
+
+/**
  * CREATE NEW SESSION - needs table no
  * @method POST
  * @route '/api/session/new'
