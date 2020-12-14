@@ -127,8 +127,6 @@ h5 {
   }
 
   p {
-    font-family: "Open Sans", sans-serif;
-    font-size: 12px;
     font-weight: 300;
     color: $mild-text-color;
     margin: 0;
@@ -158,8 +156,6 @@ h5 {
   @include page-transition;
 
   h3 {
-    @include ultra-font-defaults;
-    font-size: 30px;
     color: $card-color;
   }
 }
@@ -209,15 +205,12 @@ h5 {
 
   //dish title
   h4 {
-    font-family: "Zilla Slab", serif;
     font-weight: 700;
-    color: $title-color-dark;
     margin: 0 0 5px 0;
   }
 
   //dish description
   p {
-    font-family: "Open Sans", sans-serif;
     font-size: 13px;
     margin: 0;
     padding: 0;
@@ -237,8 +230,6 @@ h5 {
   width: 60%;
 
   p {
-    font-family: "Open Sans", sans-serif;
-    font-size: 12px;
     font-weight: 300;
     color: grey;
     margin: 0;
@@ -323,8 +314,6 @@ h5 {
   width: 80%;
 
   h4 {
-    color: $title-color-dark;
-    font-family: "Zilla Slab", serif;
     font-size: 20px;
   }
 
@@ -370,7 +359,6 @@ h5 {
     width: 25%;
 
     p {
-      font-family: "Open Sans", sans-serif;
       font-size: 15px;
       font-weight: 200;
     }
@@ -394,9 +382,7 @@ h5 {
   @include expansion-transition;
 
   h5 {
-    @include margin-padding-0;
     @include no-select;
-    font-family: "Zilla Slab", serif;
     font-size: 16px;
     color: $card-color;
   }
@@ -407,16 +393,12 @@ h5 {
   width: 26%;
 
   p {
-    font-family: "Open Sans", sans-serif;
-    font-size: 12px;
     font-weight: 200;
     //margin-right: 30px;
   }
 
   h5 {
-    @include margin-padding-0;
     color: $accent-color;
-    font-family: "Zilla Slab", serif;
     font-size: 23px;
     font-weight: 600;
   }
@@ -437,6 +419,10 @@ h5 {
   h4 {
     @include ultra-font-defaults;
     margin: 20px 10px 8px 10px;
+  }
+
+  &.expand {
+    height: 240px;
   }
 }
 
@@ -473,12 +459,12 @@ h5 {
 }
 
 @keyframes progressAnimation {
-  0% {
+  5% {
     width: 5%;
     background-color: #f8ed86;
   }
   100% {
-    width: 85%;
+    width: 100%;
     background-color: #f0d22a;
   }
 }
