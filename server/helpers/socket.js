@@ -7,8 +7,10 @@ const socket = (io) => {
     });
 
     socket.on('session', (data) => {
-      channel = `session-${data.sessionID}`;
-      socket.join(channel);
+      if (!channel) {
+        channel = `session-${data.sessionID}`;
+        socket.join(channel);
+      }
     });
 
     socket.on('cart', () => {
