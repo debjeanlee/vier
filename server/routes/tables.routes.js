@@ -1,6 +1,8 @@
 const router = require('express').Router();
 
 const Table = require('../models/table.models');
+const Order = require('../models/order.models');
+const Session = require('../models/session.models');
 
 /**
  * GET ALL TABLES
@@ -25,11 +27,25 @@ router.get('/', async (req, res) => {
  */
 router.get('/:tableNo', async (req, res) => {
   try {
-    const session = await Table.find({ tableNo: req.params.tableNo }).populate('sessionId');
-    if (session.sessionId === '') {
+    const table = await Table.findOne({ tableNo: req.params.tableNo })
+      .populate({
+        path: 'session',
+        populate: [{
+            path: 'orders',
+            populate: {
+              path: 'items.dish',
+            },
+          },
+          {
+            path: 'cart.dish',
+          },
+        ],
+      })
+      .exec();
+    if (table.session === undefined) {
       res.status(400).json({ message: 'Session does not exist' });
     } else {
-      res.status(200).json({ session });
+      res.status(200).json({ table });
     }
   } catch (error) {
     res.status(400).json({ message: 'Something went wrong' });
@@ -44,7 +60,7 @@ router.get('/:tableNo', async (req, res) => {
  */
 router.get('/empty', async (req, res) => {
   try {
-    const tables = await Table.find({ sessionId: undefined });
+    const tables = await Table.find({ session: undefined });
     res.status(200).json({ tables });
   } catch (error) {
     res.status(400).json({ message: 'Something went wrong' });
@@ -64,9 +80,9 @@ router.patch('/:tableNo', async (req, res) => {
   try {
     await Table.findOneAndUpdate(
       { tableNo: req.body.tableNo },
-      { $set: { sessionId: curTable.sessionId } }
+      { $set: { session: curTable.session } }
     );
-    curTable.sessionId = undefined;
+    curTable.session = undefined;
     await curTable.save();
     res.status(200).json({
       message: `Session shifted from table ${req.params.tableNo} to table ${req.body.tableNo}`,
