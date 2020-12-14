@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { axiosPatch, axiosPost } from '../../../shared/helpers/api';
 
 function TableCard({ tableData, getRestaurantData }) {
