@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function OrderItemCard({ order, number }) {
-  console.log(order);
-
   return (
     <div className="card">
       <div className="card-header">
@@ -16,7 +14,7 @@ function OrderItemCard({ order, number }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 OrderItemCard.propTypes = {
