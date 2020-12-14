@@ -322,17 +322,30 @@ body {
         width: 100%;
         height: 50px;
 
-        h6 {
-          font-family: 'Open Sans', sans-serif;
-          font-size: 15px;
-          font-weight: 200;
+        .cart-item-name-div {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 70%;
+
+          h6 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 200;
+          }
         }
 
-        p {
-          font-family: 'Open Sans', sans-serif;
-          font-size: 15px;
-          font-weight: 200;
+        .cart-quantity-price-div {
+          @include flex-sb-c;
+          width: 25%;
+
+          p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 200;
+          }
         }
+
       }
     }
 

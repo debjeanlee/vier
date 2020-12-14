@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CategoryCard from './ui/CategoryCard';
 
-function Categories({ openCategory, categoriesData }) {
-  const categories = categoriesData.map((category) => (
-    <CategoryCard categoryData={category} openCategory={openCategory} key={category.name} />
+function Categories({ openCategory, menuData }) {
+  const categories = menuData.map((categoryData) => (
+    <CategoryCard categoryData={categoryData} openCategory={openCategory} key={categoryData.category} />
   ));
 
   return (
@@ -16,7 +16,7 @@ function Categories({ openCategory, categoriesData }) {
 
 Categories.propTypes = {
   openCategory: PropTypes.func,
-  categoriesData: PropTypes.array,
+  menuData: PropTypes.array,
 };
 
 export default Categories;
