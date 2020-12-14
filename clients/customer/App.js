@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useParams, NavLink } from 'react-router-dom';
 import './styles/menu.scss';
-import axiosGet from 'axios';
+import axios from 'axios';
 import Home from './pages/Home';
 import Cart from './components/Cart';
 import Topbar from './components/ui/Topbar';
@@ -10,16 +10,16 @@ import Orders from './pages/Orders';
 function App() {
   const [sessionData, setSessionData] = useState({});
   const [pageMode, setPageMode] = useState({ mode: 'home', category: '' });
+  const { tableno } = useParams();
 
   function goHome() {
-    setPageMode('');
     setPageMode({ mode: 'home', category: '' });
   }
 
-  async function getSessionData() {
+  async function getSessionData(tableno) {
     try {
-      const res = await axiosGet('/api/tables/1');
-      // console.log('session', res.data.session[0]);
+      const res = await axios.get(`/api/tables/${tableno}`);
+      console.log('session', res.data.session[0]);
       setSessionData(res.data.session[0]);
     } catch (err) {
       console.log(err);
@@ -39,9 +39,7 @@ function App() {
       break;
   }
 
-  useEffect(() => {
-    getSessionData();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -49,8 +47,16 @@ function App() {
         <Topbar goHome={goHome} />
         {backdrop}
         <Switch>
-          <Route>
-            <Home setPageMode={setPageMode} pageMode={pageMode} />
+          <Route path="/" exact>
+            <NavLink to="/table/1">Table 1</NavLink>
+            <NavLink to="/table/2">Table 2</NavLink>
+            <NavLink to="/table/3">Table 3</NavLink>
+            {/* <Home setPageMode={setPageMode} pageMode={pageMode} /> */}
+            {/* <Cart sessionData={sessionData} /> */}
+            <div className="main-div" />
+          </Route>
+          <Route path="/table/:tableno">
+            <Home setPageMode={setPageMode} pageMode={pageMode} getSessionData={getSessionData} />
             <Cart sessionData={sessionData} />
             <Orders />
           </Route>
