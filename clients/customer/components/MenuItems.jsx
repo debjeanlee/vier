@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { axiosGet } from '../../shared/helpers/api';
 import MenuItemCard from './ui/MenuItemCard';
 
 function MenuItems({ categoryHeaderPos, pageMode, menuData }) {

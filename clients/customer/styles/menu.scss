@@ -61,6 +61,7 @@ body {
 
   .home-page-div {
     width: 100%;
+    min-height: 80vh;
 
     .category-main-div {
       @include flex-c-c;
@@ -139,8 +140,7 @@ body {
     .menuitems-main-div {
       @include flex-c-c;
       flex-direction: column;
-      margin-top: 18vh;
-      margin-bottom: 100px;
+      margin-top: 100px;
 
       img {
         object-fit: cover;
@@ -345,7 +345,6 @@ body {
             font-weight: 200;
           }
         }
-
       }
     }
 
