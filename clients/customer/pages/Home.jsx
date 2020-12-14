@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import axiosGet from 'axios';
 import Categories from '../components/Categories';
 import MenuItems from '../components/MenuItems';
 import Orders from './Orders';
 
-function Home({ setBackdropWidth, setPageMode, pageMode }) {
-  const [categoriesData, setCategoriesData] = useState([]);
+function Home({ pageMode, setPageMode }) {
+  const [menuData, setMenuData] = useState([]);
   const [categoryHeaderPos, setCategoryHeaderPos] = useState('100');
 
-  async function getCategories() {
+  async function getMenu() {
     try {
-      const res = await axios.get('/api/categories');
-      setCategoriesData(res.data.categories);
+      const res = await axiosGet('/api/dishes');
+      setMenuData(res.data.menuItems);
     } catch (err) {
       throw new Error(err);
     }
@@ -29,20 +29,21 @@ function Home({ setBackdropWidth, setPageMode, pageMode }) {
   }
 
   useEffect(() => {
-    getCategories();
+    getMenu();
   }, []);
 
   if (pageMode.mode === 'menuitems') {
-    return <MenuItems pageMode={pageMode} categoryHeaderPos={categoryHeaderPos} />;
+    return (
+      <MenuItems pageMode={pageMode} menuData={menuData} categoryHeaderPos={categoryHeaderPos} />
+    );
   }
   if (pageMode.mode === 'orders') {
     return <Orders />;
   }
-  return <Categories openCategory={openCategory} categoriesData={categoriesData} />;
+  return <Categories openCategory={openCategory} menuData={menuData} />;
 }
 
 Home.propTypes = {
-  setBackdropWidth: PropTypes.func,
   setPageMode: PropTypes.func,
   pageMode: PropTypes.object,
 };

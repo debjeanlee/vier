@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -12,9 +13,7 @@ function Cart({ sessionData }) {
   function toggleExpandCart() {
     setExpandCart(!expandCart);
   }
-
   const cartTotal = calculateTotal(cartData);
-
   const cartItems = cartData.map((item) => <CartItemCard cartItem={item} key={item.name} />);
 
   return (
@@ -40,7 +39,7 @@ function Cart({ sessionData }) {
 }
 
 Cart.propTypes = {
-  sessionData: PropTypes.func,
+  sessionData: PropTypes.object,
 };
 
 export default Cart;
