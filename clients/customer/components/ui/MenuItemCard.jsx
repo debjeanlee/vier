@@ -13,10 +13,7 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantit
     }
   }
 
-  // let cartIndex = cartData.
-
   async function incrementItem() {
-    console.log('increase');
     try {
       const res = axios.patch(`/api/cart/increase/${sessionId}`, {
         dishId: menuItem._id,
@@ -28,7 +25,6 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantit
   }
 
   function decrementItem() {
-    console.log('decrease');
   }
 
   return (
