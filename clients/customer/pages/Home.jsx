@@ -10,7 +10,6 @@ function Home({ pageMode, setPageMode, getSessionData }) {
   const [menuData, setMenuData] = useState([]);
   const [categoryHeaderPos, setCategoryHeaderPos] = useState('100');
   const { tableno } = useParams();
-  console.log('home tableno:', tableno);
 
   async function getMenu() {
     try {
