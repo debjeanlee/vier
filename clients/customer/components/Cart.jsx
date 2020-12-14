@@ -2,13 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { cartData } from '../data/testData';
 import { calculateTotal } from '../../shared/helpers/func';
 import CartItemCard from './ui/CartItemCard';
 
 function Cart({ cartData }) {
   const [expandCart, setExpandCart] = useState(false);
-  console.log('cart', cartData);
 
   function toggleExpandCart() {
     setExpandCart(!expandCart);
