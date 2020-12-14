@@ -6,7 +6,6 @@ import socket from '../shared/helpers/socket';
 import Home from './pages/Home';
 import Cart from './components/Cart';
 import Topbar from './components/ui/Topbar';
-import Orders from './pages/Orders';
 
 function App() {
   const [sessionData, setSessionData] = useState({});
