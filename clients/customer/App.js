@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {}, []);
 
   return (
-    <BrowserRouter>
+    <>
       <div className="main-div">
         <Topbar goHome={goHome} />
         {backdrop}
@@ -60,7 +60,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 
