@@ -18,8 +18,8 @@ function App() {
   async function getSessionData(tableno) {
     try {
       const res = await axios.get(`/api/tables/${tableno}`);
-      console.log('session', res.data.session[0]);
-      setSessionData(res.data.session[0]);
+      console.log('session', res.data.table.session);
+      setSessionData(res.data.table.session);
     } catch (err) {
       console.log(err);
     }
@@ -55,8 +55,14 @@ function App() {
             <div className="main-div" />
           </Route>
           <Route path="/table/:tableno">
-            <Home setPageMode={setPageMode} pageMode={pageMode} getSessionData={getSessionData} />
-            <Cart sessionData={sessionData} />
+            <Home
+              setPageMode={setPageMode}
+              pageMode={pageMode}
+              getSessionData={getSessionData}
+              cartData={sessionData.cart}
+              sessionData={sessionData}
+            />
+            <Cart cartData={sessionData.cart} />
           </Route>
         </Switch>
       </div>
