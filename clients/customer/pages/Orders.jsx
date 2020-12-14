@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import OrderItemCard from '../components/ui/OrderItemCard';
 
 function Orders({ sessionData }) {
-  console.log(sessionData);
   const orders = sessionData.orders.map((el, i) => <OrderItemCard order={el} number={i} />);
 
   return (

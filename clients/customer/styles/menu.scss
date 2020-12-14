@@ -421,3 +421,64 @@ h5 {
     font-weight: 600;
   }
 }
+
+.order-item-container {
+  margin: 50px 5px;
+
+  .card {
+    @include menu-card;
+    display: block;
+    width: 85%;
+    margin: 13px auto;
+    padding: 10px 15px;
+    @include expansion-transition;
+  }
+
+  h4 {
+    @include ultra-font-defaults;
+    margin: 20px 10px 8px 10px;
+  }
+}
+
+.card-header {
+  @include ultra-font-defaults;
+  margin-left: 10px;
+}
+
+.progress2 {
+  margin-bottom: 15px;
+  padding: 2px;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    0 1px rgba(202, 202, 202, 0.08);
+}
+
+.progress-bar2 {
+  height: 8px;
+  border-radius: 30px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.05)
+  );
+  transition: 0.4s linear;
+  transition-property: width, background-color;
+}
+
+.progress-moved .progress-bar2 {
+  width: 5%;
+  background-color: #ffac13;
+  // animation: progressAnimation 3s;
+}
+
+@keyframes progressAnimation {
+  0% {
+    width: 5%;
+    background-color: #f8ed86;
+  }
+  100% {
+    width: 85%;
+    background-color: #f0d22a;
+  }
+}
