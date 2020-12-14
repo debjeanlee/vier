@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
+import pageModeReducer from './pageModeReducer';
+import cartModeReducer from './cartModeReducer';
 
 const rootReducer = combineReducers({
-  temp: '',
+  pageMode: pageModeReducer,
 });
 
 export default rootReducer;
