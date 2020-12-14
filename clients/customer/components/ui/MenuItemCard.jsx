@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-
 import FAIcon from '../../../shared/components/FAIcon';
 
 function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem }) {

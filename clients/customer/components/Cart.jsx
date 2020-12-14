@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +15,16 @@ function Cart({ sessionData }) {
   const cartTotal = calculateTotal(cartData);
   const cartItems = cartData.map((item) => <CartItemCard cartItem={item} key={item.name} />);
 
+  // async function placeOrder() {
+  //   console.log('place order');
+  //   try {
+  //
+  //   } catch (err) {
+  //     console.log(err)
+  //   };
+  //
+  // }
+
   return (
     <div className={expandCart === true ? 'cart-div expand' : 'cart-div'}>
       <div className="cart-header" onClick={() => toggleExpandCart()}>
@@ -27,7 +36,10 @@ function Cart({ sessionData }) {
       </div>
       <div className="cart-body">{cartItems}</div>
       <div className="cart-footer">
-        <div className="order-button-div">
+        <div
+          className="order-button-div"
+          // onClick={placeOrder}
+        >
           <h5>Place Order</h5>
         </div>
         <div className="cart-total-text-div">
