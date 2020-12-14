@@ -405,7 +405,7 @@ h5 {
 }
 
 .order-item-container {
-  margin: 50px 5px;
+  margin: 80px 5px;
 
   .card {
     @include menu-card;
@@ -414,8 +414,13 @@ h5 {
     margin: 13px auto;
     padding: 10px 15px;
     height: 120px;
-    overflow: scroll;
+    // overflow: scroll;
     @include expansion-transition;
+
+    .order-details-container {
+      height: 350px;
+      overflow: scroll;
+    }
 
     &.expand {
       height: 480px;
@@ -436,6 +441,10 @@ h5 {
       transform: rotate(180deg);
     }
   }
+}
+
+.total {
+  margin: 8px 30px;
 }
 
 .card-header {
@@ -467,8 +476,8 @@ h5 {
 
 .progress-moved .progress-bar2 {
   width: 5%;
-  background-color: #ffac13;
-  // animation: progressAnimation 3s;
+  background-image: linear-gradient(45deg, #ffac13, #f8ed86, #f0d22a);
+  // animation: colorAnimation 1s infinite;
 }
 
 @keyframes progressAnimation {
