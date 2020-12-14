@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import MenuItemCard from './ui/MenuItemCard';
 
-function MenuItems({ categoryHeaderPos, pageMode, menuData, cartData, sessionId }) {
+function MenuItems({ categoryHeaderPos, pageMode, menuData, cartData, sessionId, getSessionData }) {
   const [selectedMenuItem, setSelectedMenuItem] = useState('');
   const [menuItemsData, setMenuItemsData] = useState([]);
 
@@ -25,6 +25,7 @@ function MenuItems({ categoryHeaderPos, pageMode, menuData, cartData, sessionId 
           setSelectedMenuItem={setSelectedMenuItem}
           key={menuItem.name}
           sessionId={sessionId}
+          getSessionData={getSessionData}
           quantity={cartData[cartIndex].quantity}
         />
       );
@@ -37,6 +38,7 @@ function MenuItems({ categoryHeaderPos, pageMode, menuData, cartData, sessionId 
         setSelectedMenuItem={setSelectedMenuItem}
         key={menuItem.name}
         sessionId={sessionId}
+        getSessionData={getSessionData}
         quantity={0}
       />
     );
@@ -63,6 +65,8 @@ MenuItems.propTypes = {
   categoryHeaderPos: PropTypes.string,
   menuData: PropTypes.array,
   cartData: PropTypes.array,
+  sessionId: PropTypes.string,
+  getSessionData: PropTypes.func,
 };
 
 export default MenuItems;

@@ -1,10 +1,20 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import FAIcon from '../../../shared/components/FAIcon';
 
-function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantity, sessionId }) {
+function MenuItemCard({
+  menuItem,
+  selectedMenuItem,
+  setSelectedMenuItem,
+  quantity,
+  sessionId,
+  getSessionData,
+}) {
+  const { tableno } = useParams();
+
   function expandMenuItem(name) {
     if (selectedMenuItem === name) {
       setSelectedMenuItem('');
@@ -15,16 +25,26 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantit
 
   async function incrementItem() {
     try {
-      const res = axios.patch(`/api/cart/increase/${sessionId}`, {
+      const res = await axios.patch(`/api/cart/add/${sessionId}`, {
         dishId: menuItem._id,
       });
+      getSessionData(tableno);
       console.log(res);
     } catch (err) {
       console.log(err);
     }
   }
 
-  function decrementItem() {
+  async function decrementItem() {
+    try {
+      const res = await axios.patch(`/api/cart/decrease/${sessionId}`, {
+        dishId: menuItem._id,
+      });
+      getSessionData(tableno);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -88,6 +108,7 @@ MenuItemCard.propTypes = {
   description: PropTypes.string,
   sessionId: PropTypes.string,
   quantity: PropTypes.number,
+  getSessionData: PropTypes.func,
 };
 
 export default MenuItemCard;
