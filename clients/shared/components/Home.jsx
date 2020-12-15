@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Log from './sub/Log';
+import '../styles/home.scss';
 
 function Home({ setIsAuth }) {
   const authURL = process.env.AUTH;

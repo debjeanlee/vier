@@ -1,11 +1,12 @@
 @import "clients/shared/styles/variables";
 @import "clients/shared/styles/mixins";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,100&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,100&display=swap");
 
 body {
+  @include roboto;
   background-color: $purple;
   color: $card-color;
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
   padding: 10px 15px;
 }
 
