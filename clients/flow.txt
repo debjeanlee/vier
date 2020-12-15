@@ -1,0 +1,3 @@
+1) scan qr
+2) client route, /table/id
+3) scoket emit, get server data
