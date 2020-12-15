@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import PrivateRoute from '../shared/components/PrivateRoute';
+import socket from '../shared/helpers/socket';
 import Home from '../shared/components/Home';
 import Dashboard from './pages/Dashboard';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    socket.connect('service');
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <>

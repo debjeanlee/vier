@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Categories from '../components/Categories';
 import MenuItems from '../components/MenuItems';

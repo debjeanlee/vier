@@ -17,22 +17,13 @@ function MenuItems({ categoryHeaderPos, pageMode, menuData, cartData, sessionId,
     }
   }
 
-  const dishes = menuItemsData.map((menuItem) => {
-    const cartIndex = cartData.findIndex((cartItem) => cartItem.dish.name === menuItem.name);
-    if (cartIndex > -1) {
-      return (
-        <MenuItemCard
-          menuItem={menuItem}
-          expandMenuItem={expandMenuItem}
-          selectedMenuItem={selectedMenuItem}
-          setSelectedMenuItem={setSelectedMenuItem}
-          key={menuItem.name}
-          sessionId={sessionId}
-          getSessionData={getSessionData}
-          quantity={cartData[cartIndex].quantity}
-        />
-      );
-    }
+  function receiveCart() {
+    return socket.receive('cart', () => {
+      getSessionData(tableno);
+    });
+  }
+
+  function menuItemCard(menuItem, quantity) {
     return (
       <MenuItemCard
         menuItem={menuItem}
@@ -42,17 +33,23 @@ function MenuItems({ categoryHeaderPos, pageMode, menuData, cartData, sessionId,
         key={menuItem.name}
         sessionId={sessionId}
         getSessionData={getSessionData}
-        quantity={0}
+        quantity={quantity}
       />
     );
+  }
+
+  const dishes = menuItemsData.map((menuItem) => {
+    const cartIndex = cartData.findIndex((cartItem) => cartItem.dish.name === menuItem.name);
+    if (cartIndex > -1) {
+      return menuItemCard(menuItem, cartData[cartIndex].quantity);
+    }
+    return menuItemCard(menuItem, 0);
   });
 
   useEffect(() => {
     const index = menuData.findIndex((item) => item.category === pageMode.category);
     setMenuItemsData(menuData[index].items);
-    socket.receive('cart', () => {
-      getSessionData(tableno);
-    });
+    receiveCart();
   }, []);
 
   return (
