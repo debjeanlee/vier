@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { axiosGet } from '../../shared/helpers/api'
-import OrderCard from '../components/orderCard';
+import { axiosGet } from '../../shared/helpers/api';
+import OrderCard from './components/OrderCard';
 
 function Dashboard() {
   const [orders, setOrders] = useState([]);
 
   async function getAllOrders() {
     const res = await axiosGet('/api/orders/active');
-    let arr = [];
+    const arr = [];
     res.orders.forEach((el) => {
       el.items.forEach((item) => {
         if (item.progress === 2) {
