@@ -21,6 +21,11 @@ input {
   background-color: $sv-bg;
   padding: 16px;
   margin: 8px auto 12px auto;
+
+  &:focus {
+    outline: none;
+    border-color: $sv-purple;
+  }
 }
 
 button {
