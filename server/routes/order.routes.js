@@ -26,6 +26,11 @@ router.patch('/new/:sessionid', async (req, res) => {
     const session = await Session.findById(req.params.sessionid);
     await session.populate('cart.dish').execPopulate();
     let totalCost = 0;
+
+    if (session.cart.length === 0) {
+      return res.status(401).json({ message: 'Cart is empty' });
+    }
+
     session.cart.forEach((item) => {
       totalCost += item.dish.price * item.quantity;
     });
