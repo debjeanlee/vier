@@ -56,6 +56,13 @@ function App() {
             <NavLink to="/table/1">Table 1</NavLink>
             <NavLink to="/table/2">Table 2</NavLink>
             <NavLink to="/table/3">Table 3</NavLink>
+            <NavLink to="/table/4">Table 4</NavLink>
+            <NavLink to="/table/5">Table 5</NavLink>
+            <NavLink to="/table/6">Table 6</NavLink>
+            <NavLink to="/table/7">Table 7</NavLink>
+            <NavLink to="/table/8">Table 8</NavLink>
+            <NavLink to="/table/9">Table 9</NavLink>
+            <NavLink to="/table/10">Table 10</NavLink>
             {/* <Home setPageMode={setPageMode} pageMode={pageMode} /> */}
             {/* <Cart sessionData={sessionData} /> */}
             <div className="main-div" />
