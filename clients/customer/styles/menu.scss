@@ -406,6 +406,7 @@ h5 {
 
 .order-item-container {
   margin: 80px 5px;
+  padding-bottom: 20px;
 
   .card {
     @include menu-card;
@@ -427,7 +428,7 @@ h5 {
     }
 
     &:last-child {
-      margin-top: 40px;
+      margin: 40px auto 40px auto;
       width: 70%;
       height: auto;
       background-color: $bar-yellow;
@@ -460,7 +461,8 @@ h5 {
 }
 
 .total {
-  margin: 8px 30px;
+  color: $bar-yellow;
+  margin: 0 0 20px 20px;
 }
 
 .card-header {

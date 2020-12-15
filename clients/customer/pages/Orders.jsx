@@ -22,7 +22,9 @@ function Orders({ sessionData }) {
     <div className="home-page-div">
       <div className="category-header-div">
         <h3>Orders</h3>
-        <h5 className="total">Total: ${total}</h5>
+        <div>
+          <h4 className="total">Total: ${total}</h4>
+        </div>
       </div>
       <div className="order-item-container">
         {orders}
