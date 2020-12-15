@@ -22,9 +22,11 @@ function Log({ setIsAuth, url }) {
 
   return (
     <form method="post" onSubmit={submitHandler}>
+      <p>Username: </p>
       <input name="username" type="text" className="username" placeholder="Username" onChange={changeHandler} />
+      <p>Password: </p>
       <input name="password" type="password" className="password" placeholder="Password" onChange={changeHandler} />
-      <button type="submit">Submit</button>
+      <button className="pink" type="submit">Submit</button>
     </form>
   );
 }

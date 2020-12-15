@@ -13,20 +13,36 @@ function Home({ setIsAuth }) {
 
   return (
     <div>
-      <div>
-        <button onClick={clickHandler}>Register</button>
-        <button onClick={clickHandler}>Login</button>
-      </div>
       {showReg && (
         <>
-          <h1>Register</h1>
-          <Log id="Register" setIsAuth={setIsAuth} url={`${authURL}/register`} />
+          <div className="login-container">
+            <div className="container">
+              <h1>Register</h1>
+              <Log id="Register" setIsAuth={setIsAuth} url={`${authURL}/register`} />
+            </div>
+          </div>
+          <div className="sm-container">
+            <p>
+              Already registered?
+              <span onClick={clickHandler}>Login here.</span>
+            </p>
+          </div>
         </>
       )}
       {!showReg && (
         <>
-          <h1>Login</h1>
-          <Log id="Login" setIsAuth={setIsAuth} url={`${authURL}/login`} />
+          <div className="login-container">
+            <div className="container">
+              <h1>Login</h1>
+              <Log id="Login" setIsAuth={setIsAuth} url={`${authURL}/login`} />
+            </div>
+          </div>
+          <div className="sm-container">
+            <p>
+              Don't have an account?
+              <span onClick={clickHandler}>Register here.</span>
+            </p>
+          </div>
         </>
       )}
     </div>

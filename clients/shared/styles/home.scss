@@ -2,14 +2,70 @@
 @import "clients/shared/styles/mixins";
 
 body {
+  @include roboto;
+  @include flex-c-c;
   background-color: $sv-bg;
   color: $sv-header;
 }
 
+p {
+  font-size: 16px;
+  margin: 10px auto;
+}
+
 input {
   @include sv-card-border;
+  color: $sv-header;
+  display: block;
+  width: 90%;
   background-color: $sv-bg;
+  padding: 16px;
+  margin: 8px auto 12px auto;
 }
 
 button {
+  @include sv-card-border;
+  color: $sv-header;
+  background-color: $sv-bg;
+  margin: 10px 5px;
+  padding: 14px 20px;
+}
+
+span {
+  margin-left: 5px;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+.login-container {
+  @include sv-card-border;
+  display: block;
+  width: 380px;
+  height: 350px;
+  padding: 12px;
+}
+
+.sm-container {
+  @include sv-card-border;
+  @include flex-c-c;
+  padding: 16px;
+  margin: 20px auto;
+}
+
+.container {
+  justify-content: center;
+  margin: 10px;
+}
+
+.pink {
+  @include sv-pink-btn;
+  font-size: 16px;
+}
+
+.pill {
+  background-color: $sv-pill-bg;
 }
