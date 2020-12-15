@@ -6,7 +6,7 @@ function Dashboard() {
   const [restaurantData, setRestaurantData] = useState([]);
 
   async function getRestaurantData() {
-    const res = axiosGet('/api/tables');
+    const res = await axiosGet('/api/tables');
     setRestaurantData(res.tables);
   }
 
