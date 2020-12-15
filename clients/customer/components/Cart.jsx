@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import socket from '../../shared/helpers/socket';
+import { axiosPatch } from '../../shared/helpers/api';
 import { calculateTotal } from '../../shared/helpers/func';
 import CartItemCard from './ui/CartItemCard';
 
@@ -23,12 +24,9 @@ function Cart({ cartData, sessionId, getSessionData }) {
   }
 
   async function placeOrder() {
-    try {
-      const res = await axios.patch(`/api/orders/new/${sessionId}`);
-      getSessionData(tableno);
-    } catch (err) {
-      console.log(err);
-    }
+    await axiosPatch(`/api/orders/new/${sessionId}`);
+    getSessionData(tableno);
+    socket.transmit('order');
   }
 
   return (

@@ -1,12 +1,19 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { axiosPatch } from '../../../shared/helpers/api';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { axiosPatch } from '../../../shared/helpers/api';
 import FAIcon from '../../../shared/components/FAIcon';
 import socket from '../../../shared/helpers/socket';
 
-function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantity, sessionId, getSessionData }) {
+function MenuItemCard({
+  menuItem,
+  selectedMenuItem,
+  setSelectedMenuItem,
+  quantity,
+  sessionId,
+  getSessionData,
+}) {
   const { tableno } = useParams();
 
   function expandMenuItem(name) {
@@ -28,7 +35,9 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantit
   return (
     <div
       className={
-        menuItem.name === selectedMenuItem && menuItem.description !== '' ? 'menuitem-card expand' : 'menuitem-card'
+        menuItem.name === selectedMenuItem && menuItem.description !== ''
+          ? 'menuitem-card expand'
+          : 'menuitem-card'
       }
       key={menuItem.name}
     >
@@ -42,7 +51,9 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantit
       >
         <div className="menuitem-title-description-div">
           <h4>{menuItem.name}</h4>
-          <p style={menuItem.name === selectedMenuItem ? { opacity: `1` } : {}}>{menuItem.description}</p>
+          <p style={menuItem.name === selectedMenuItem ? { opacity: `1` } : {}}>
+            {menuItem.description}
+          </p>
         </div>
         <div className="weight-price-div">
           <p>250g</p>
@@ -53,7 +64,12 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantit
         </div>
       </div>
       <div className="menuitem-quantity-div">
-        <FAIcon icon={faPlus} iconClass="fa-icon plus" divClass="fa-icon-div" clickFunc={() => modifyItem('add')} />
+        <FAIcon
+          icon={faPlus}
+          iconClass="fa-icon plus"
+          divClass="fa-icon-div"
+          clickFunc={() => modifyItem('add')}
+        />
         <div className="quantiy-count">
           <h6>{quantity}</h6>
         </div>
