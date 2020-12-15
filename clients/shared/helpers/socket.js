@@ -11,10 +11,10 @@ export default (() => {
 
   const session = (sessionID) => socket.emit('session', { sessionID });
 
-  const transmitCart = () => socket.emit('cart');
+  const transmit = (type) => socket.emit(type);
 
-  const receiveCart = (cb) =>
-    socket.on('cart', () => {
+  const receive = (type, cb) =>
+    socket.on(type, () => {
       cb();
     });
 
@@ -22,7 +22,7 @@ export default (() => {
     connect,
     disconnect,
     session,
-    transmitCart,
-    receiveCart,
+    transmit,
+    receive,
   };
 })();
