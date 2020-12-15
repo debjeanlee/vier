@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 
 function Checkout() {
   const { state } = useLocation();
-  console.log(state);
   return (
     <div>
       <h3>Checkout</h3>
