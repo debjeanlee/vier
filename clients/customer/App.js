@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, NavLink } from 'react-router-dom';
-import './styles/menu.scss';
 import { axiosGet } from '../shared/helpers/api';
 import socket from '../shared/helpers/socket';
 import Home from './pages/Home';
 import Cart from './pages/components/Cart';
 import Topbar from './pages/components/ui/Topbar';
+import Checkout from './pages/Checkout';
 
 function App() {
   const [sessionData, setSessionData] = useState({});
@@ -78,12 +78,11 @@ function App() {
             {pageMode.mode === 'orders' ? (
               ''
             ) : (
-              <Cart
-                cartData={sessionData.cart}
-                sessionId={sessionData._id}
-                getSessionData={getSessionData}
-              />
+              <Cart cartData={sessionData.cart} sessionId={sessionData._id} getSessionData={getSessionData} />
             )}
+          </Route>
+          <Route path="/checkout">
+            <Checkout />
           </Route>
         </Switch>
       </div>
