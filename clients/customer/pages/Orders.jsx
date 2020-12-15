@@ -24,7 +24,12 @@ function Orders({ sessionData }) {
         <h3>Orders</h3>
         <h5 className="total">Total: ${total}</h5>
       </div>
-      <div className="order-item-container">{orders}</div>
+      <div className="order-item-container">
+        {orders}
+        <div className="card">
+          <h3>Continue to Payment</h3>
+        </div>
+      </div>
     </div>
   );
 }

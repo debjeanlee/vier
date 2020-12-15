@@ -425,6 +425,22 @@ h5 {
     &.expand {
       height: 480px;
     }
+
+    &:last-child {
+      margin-top: 40px;
+      width: 70%;
+      height: auto;
+      background-color: $bar-yellow;
+
+      h3 {
+        color: $title-color-dark;
+        font-size: 18px;
+        font-weight: 900;
+        font-family: "Zilla Slab", serif;
+        margin: 8px auto;
+        text-align: center;
+      }
+    }
   }
 
   h4 {
