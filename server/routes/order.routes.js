@@ -28,7 +28,7 @@ router.patch('/new/:sessionid', async (req, res) => {
     let totalCost = 0;
 
     if (session.cart.length === 0) {
-      return res.status(401).json({ message: 'Cart is empty' });
+      return res.status(400).json({ message: 'Cart is empty' });
     }
 
     session.cart.forEach((item) => {
@@ -42,7 +42,8 @@ router.patch('/new/:sessionid', async (req, res) => {
       };
       items.push(obj);
     });
-    const orderNo = (await Order.countDocuments()) + 1;
+    const lastOrder = await Order.find().sort({ orderNo: -1 }).limit(1);
+    const orderNo = lastOrder[0].orderNo + 1;
     const order = new Order({
       orderNo,
       items,
@@ -54,7 +55,7 @@ router.patch('/new/:sessionid', async (req, res) => {
     await session.save();
     res.status(201).json({ message: 'Order has been placed' });
   } catch (err) {
-    res.status(401).json({ message: 'Something went wrong' });
+    res.status(400).json({ message: 'Something went wrong' });
   }
 });
 
