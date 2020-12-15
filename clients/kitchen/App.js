@@ -10,15 +10,15 @@ function App() {
   return (
     <div className="login-page">
       {/* TEMP SO DONT NEED TO KEEP LOGGING IN  */}
-      {/* <Dashboard /> */}
+      <Dashboard />
       <div>
-        <h3>Kitchen Login</h3>
+        {/* <h3>Kitchen Login</h3>
         <Switch>
           <Route exact path="/">
             {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}
           </Route>
           <PrivateRoute exact path="/dashboard" component={Dashboard} isAuth={isAuth} />
-        </Switch>
+        </Switch> */}
       </div>
     </div>
   );
