@@ -17,10 +17,16 @@ function Home({ setIsAuth }) {
         <button onClick={clickHandler}>Login</button>
       </div>
       {showReg && (
-        <Log id="Register" setIsAuth={setIsAuth} logLabel="Register" url={`${authURL}/register`} />
+        <>
+          <h1>Register</h1>
+          <Log id="Register" setIsAuth={setIsAuth} url={`${authURL}/register`} />
+        </>
       )}
       {!showReg && (
-        <Log id="Login" setIsAuth={setIsAuth} logLabel="Login" url={`${authURL}/login`} />
+        <>
+          <h1>Login</h1>
+          <Log id="Login" setIsAuth={setIsAuth} url={`${authURL}/login`} />
+        </>
       )}
     </div>
   );
