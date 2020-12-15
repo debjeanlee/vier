@@ -1,0 +1,15 @@
+@import "clients/shared/styles/variables";
+@import "clients/shared/styles/mixins";
+
+body {
+  background-color: $sv-bg;
+  color: $sv-header;
+}
+
+input {
+  @include sv-card-border;
+  background-color: $sv-bg;
+}
+
+button {
+}
