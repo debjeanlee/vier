@@ -26,6 +26,7 @@ function Cart({ cartData, sessionId, getSessionData }) {
   async function placeOrder() {
     await axiosPatch(`/api/orders/new/${sessionId}`);
     getSessionData(tableno);
+    socket.transmit('cart');
     socket.transmit('order');
   }
 

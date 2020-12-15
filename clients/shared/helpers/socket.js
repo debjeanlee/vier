@@ -3,8 +3,8 @@ import { io } from 'socket.io-client';
 export default (() => {
   let socket;
 
-  const connect = () => {
-    socket = io.connect(process.env.SERVER);
+  const connect = (type = null) => {
+    socket = io.connect(process.env.SERVER, { query: { clientType: type } });
   };
 
   const disconnect = () => socket.emit('disconnect');
