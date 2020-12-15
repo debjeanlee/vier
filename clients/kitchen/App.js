@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import './styles/kitchen.scss';
 import PrivateRoute from '../shared/components/PrivateRoute';
 import Home from '../shared/components/Home';
 import Dashboard from './pages/Dashboard';
@@ -9,7 +10,8 @@ function App() {
 
   return (
     <BrowserRouter basename="/kitchen">
-      <h1>Kitchen</h1>
+      {/* TEMP SO DONT NEED TO KEEP LOGGING IN  */}
+      {/* <Dashboard /> */}
       <Switch>
         <Route exact path="/">
           {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}
