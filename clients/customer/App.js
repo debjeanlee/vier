@@ -4,8 +4,8 @@ import './styles/menu.scss';
 import { axiosGet } from '../shared/helpers/api';
 import socket from '../shared/helpers/socket';
 import Home from './pages/Home';
-import Cart from './components/Cart';
-import Topbar from './components/ui/Topbar';
+import Cart from './pages/components/Cart';
+import Topbar from './pages/components/ui/Topbar';
 
 function App() {
   const [sessionData, setSessionData] = useState({});

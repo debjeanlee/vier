@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import Categories from '../components/Categories';
-import MenuItems from '../components/MenuItems';
+import Categories from './components/Categories';
+import MenuItems from './components/MenuItems';
 import Orders from './Orders';
 import { axiosGet } from '../../shared/helpers/api';
 

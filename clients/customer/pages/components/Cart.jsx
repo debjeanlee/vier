@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import socket from '../../shared/helpers/socket';
-import { axiosPatch } from '../../shared/helpers/api';
-import { calculateTotal } from '../../shared/helpers/func';
+import socket from '../../../shared/helpers/socket';
+import { axiosPatch } from '../../../shared/helpers/api';
+import { calculateTotal } from '../../../shared/helpers/func';
 import CartItemCard from './ui/CartItemCard';
 
 function Cart({ cartData, sessionId, getSessionData }) {

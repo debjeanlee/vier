@@ -2,9 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { axiosPatch } from '../../../shared/helpers/api';
-import FAIcon from '../../../shared/components/FAIcon';
-import socket from '../../../shared/helpers/socket';
+import { axiosPatch } from '../../../../shared/helpers/api';
+import FAIcon from '../../../../shared/components/FAIcon';
+import socket from '../../../../shared/helpers/socket';
 
 function MenuItemCard({
   menuItem,
