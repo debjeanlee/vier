@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { axiosPatch } from '../../../shared/helpers/api'
+import { axiosPatch } from '../../../shared/helpers/api';
 
 function OrderCard({ item, orderId, getAllOrders }) {
   const [status, setStatus] = useState({ state: '', button: '', class: '' });
@@ -18,13 +18,13 @@ function OrderCard({ item, orderId, getAllOrders }) {
         state: 'Pending..',
         button: 'START',
         class: 'pink',
-      })
+      });
     } else {
       setStatus({
         state: 'In-Progress..',
         button: 'COMPLETE',
         class: 'green',
-      })
+      });
     }
   }
 
