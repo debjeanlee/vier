@@ -75,7 +75,15 @@ function App() {
               cartData={sessionData.cart}
               sessionData={sessionData}
             />
-            <Cart cartData={sessionData.cart} sessionId={sessionData._id} getSessionData={getSessionData} />
+            {pageMode.mode === 'orders' ? (
+              ''
+            ) : (
+              <Cart
+                cartData={sessionData.cart}
+                sessionId={sessionData._id}
+                getSessionData={getSessionData}
+              />
+            )}
           </Route>
         </Switch>
       </div>
