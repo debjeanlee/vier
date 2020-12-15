@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import Categories from '../components/Categories';
 import MenuItems from '../components/MenuItems';
 import Orders from './Orders';
+import { axiosGet } from '../../shared/helpers/api';
 
 function Home({ pageMode, setPageMode, getSessionData, sessionData, cartData }) {
   const [menuData, setMenuData] = useState([]);
@@ -12,12 +13,8 @@ function Home({ pageMode, setPageMode, getSessionData, sessionData, cartData }) 
   const { tableno } = useParams();
 
   async function getMenu() {
-    try {
-      const res = await axios.get('/api/dishes');
-      setMenuData(res.data.menuItems);
-    } catch (err) {
-      throw new Error(err);
-    }
+    const res = await axiosGet('/api/dishes');
+    setMenuData(res.menuItems);
   }
 
   function openCategory(category) {
