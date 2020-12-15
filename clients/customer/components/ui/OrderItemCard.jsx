@@ -42,13 +42,10 @@ function OrderItemCard({ order, number }) {
   }, []);
 
   return (
-    <div className={open === true ? 'card expand' : 'card'}>
+    <div className={open ? 'card expand' : 'card'}>
       <div className="card-header" onClick={() => toggleOpen()}>
         <h4>Order #{number + 1}</h4>
-        <FontAwesomeIcon
-          icon={faChevronDown}
-          className={open === true ? 'fa-arrow expand' : 'fa-arrow'}
-        />
+        <FontAwesomeIcon icon={faChevronDown} className={open ? 'fa-arrow expand' : 'fa-arrow'} />
       </div>
       <div>
         <p>
@@ -60,7 +57,7 @@ function OrderItemCard({ order, number }) {
           {/* <div className="progress-bar2" /> */}
           {progressBar}
         </div>
-        <div className="order-details-container">{open ? orderDetails : ''}</div>
+        {open ? <div className="order-details-container">{orderDetails}</div> : ''}
       </div>
     </div>
   );
