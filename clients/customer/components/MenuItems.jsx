@@ -50,7 +50,7 @@ function MenuItems({ categoryHeaderPos, pageMode, menuData, cartData, sessionId,
   useEffect(() => {
     const index = menuData.findIndex((item) => item.category === pageMode.category);
     setMenuItemsData(menuData[index].items);
-    socket.receiveCart(() => {
+    socket.receive('cart', () => {
       getSessionData(tableno);
     });
   }, []);

@@ -22,7 +22,7 @@ function MenuItemCard({ menuItem, selectedMenuItem, setSelectedMenuItem, quantit
       dishId: menuItem._id,
     });
     getSessionData(tableno);
-    socket.transmitCart();
+    socket.transmit('cart');
   }
 
   return (
