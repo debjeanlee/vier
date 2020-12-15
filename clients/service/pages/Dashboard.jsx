@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { axiosGet } from '../../shared/helpers/api';
 import socket from '../../shared/helpers/socket';
-import TableCard from '../components/ui/TableCard';
+import TableCard from './components/ui/TableCard';
 
 function Dashboard() {
   const [restaurantData, setRestaurantData] = useState([]);
