@@ -17,6 +17,7 @@ module.exports = {
   output: {
     filename: 'static/js/[name].bundle.js',
     path: path.join(__dirname, 'dist'),
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -46,7 +47,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new DefinePlugin(envKeys),
-  ],
+  plugins: [new DefinePlugin(envKeys)],
 };
