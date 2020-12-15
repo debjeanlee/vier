@@ -1,6 +1,13 @@
 const socket = (io) => {
   io.on('connection', (socket) => {
+    const { query } = socket.handshake;
     let channel;
+
+    // For service and kitchen crews only
+    if (query.clientType !== 'null') {
+      channel = query.clientType;
+      socket.join(channel);
+    }
 
     socket.on('disconnect', () => {
       socket.disconnect();
@@ -15,6 +22,10 @@ const socket = (io) => {
 
     socket.on('cart', () => {
       socket.to(channel).emit('cart');
+    });
+
+    socket.on('order', () => {
+      socket.to('service').emit('order');
     });
   });
 };
