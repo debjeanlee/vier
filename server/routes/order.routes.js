@@ -112,4 +112,23 @@ router.patch('/items/:id', async (req, res) => {
   }
 });
 
+/**
+ * DELETE ORDER
+ * @method DELETE
+ * @route '/api/orders/:orderId/:sessionId'
+ * @params orderId sessionId
+ * @description delete order by id, remove from session
+ */
+router.delete('/:orderId/:sessionId', async (req, res) => {
+  try {
+    await Order.findByIdAndDelete(req.params.orderId);
+    await Session.findByIdAndUpdate(req.params.sessionId, {
+      $pull: { orders: req.params.orderId },
+    });
+    res.status(200).json({ message: 'Order deleted' });
+  } catch (error) {
+    res.status(400).json({ message: 'Something went wrong' });
+  }
+});
+
 module.exports = router;
