@@ -78,7 +78,7 @@ router.patch('/confirm/:orderNo', async (req, res) => {
 /**
  * UPDATE ITEM PROGRESS, UPDATES ORDER STATUS IF ALL ITEMS COMPLETE
  * @method PATCH
- * @route '/api/orders/:orderId'
+ * @route '/api/orders/items/:orderId'
  * @params orderId to find order
  * @body takes itemId in body to find item
  */
