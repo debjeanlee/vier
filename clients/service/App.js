@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch, Redirect, NavLink } from 'react-router-dom';
+import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import PrivateRoute from '../shared/components/PrivateRoute';
-import './styles/service.scss';
 import Home from '../shared/components/Home';
 import Dashboard from './pages/Dashboard';
 
@@ -9,7 +8,7 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
 
   return (
-    <BrowserRouter basename="/service">
+    <>
       <h1>Service</h1>
       <NavLink to="/tester">Tester</NavLink>
       <Switch>
@@ -21,7 +20,7 @@ function App() {
           <Dashboard />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </>
   );
 }
 
