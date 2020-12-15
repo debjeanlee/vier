@@ -8,16 +8,19 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
 
   return (
-    <>
+    <div className="login-page">
       {/* TEMP SO DONT NEED TO KEEP LOGGING IN  */}
       {/* <Dashboard /> */}
-      <Switch>
-        <Route exact path="/">
-          {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}
-        </Route>
-        <PrivateRoute exact path="/dashboard" component={Dashboard} isAuth={isAuth} />
-      </Switch>
-    </>
+      <div>
+        <h3>Kitchen Login</h3>
+        <Switch>
+          <Route exact path="/">
+            {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}
+          </Route>
+          <PrivateRoute exact path="/dashboard" component={Dashboard} isAuth={isAuth} />
+        </Switch>
+      </div>
+    </div>
   );
 }
 
