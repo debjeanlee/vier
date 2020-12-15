@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import OrderItemCard from './components/ui/OrderItemCard';
 
 function Orders({ sessionData }) {
@@ -26,9 +27,11 @@ function Orders({ sessionData }) {
       </div>
       <div className="order-item-container">
         {orders}
-        <div className="card">
-          <h3>Continue to Payment</h3>
-        </div>
+        <Link className="route-link" to={{ pathname: '/checkout', state: { total } }}>
+          <div className="card">
+            <h3>Checkout</h3>
+          </div>
+        </Link>
       </div>
     </div>
   );
