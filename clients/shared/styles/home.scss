@@ -77,6 +77,84 @@ span {
   font-size: 16px;
 }
 
+.green {
+  @include sv-green-btn;
+  font-size: 16px;
+}
+
 .pill {
   background-color: $sv-pill-bg;
+  padding: 10px 30px;
+  border-radius: 40px;
+}
+
+.crew-title {
+  display: flex;
+  padding: 15px 10px 5px 10px;
+
+  .icon {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+    background-color: $sv-purple;
+    padding: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    align-content: center;
+
+    svg {
+      margin: 5px;
+    }
+  }
+
+  h1 {
+    margin: auto 0;
+  }
+}
+
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.kitchen-container {
+  height: 100vh;
+  width: 100vw;
+
+  .sm-container {
+    display: block;
+    // background-color: $sv-card-bg-light;
+    width: 45%;
+    margin: 5px auto 5px auto;
+    padding: 10px;
+
+    h3 {
+      margin: 5px 0 10px 0;
+    }
+
+    .pill {
+      font-weight: 400;
+    }
+
+    .flexbox {
+      @include flex-sb-c;
+      padding: 5px;
+    }
+  }
+}
+
+.btn-container {
+  flex-direction: row-reverse;
+
+  button {
+    width: 150px;
+  }
+
+  .sm-container {
+    padding: 0 10px;
+    text-align: center;
+    background-color: $sv-card-bg-light;
+  }
 }
