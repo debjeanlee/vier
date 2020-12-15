@@ -16,19 +16,21 @@ function App() {
   }, []);
 
   return (
-    <>
-      <h1>Service</h1>
-      <NavLink to="/tester">Tester</NavLink>
-      <Switch>
-        <Route exact path="/">
-          {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}
-        </Route>
-        <PrivateRoute exact path="/dashboard" component={Dashboard} isAuth={isAuth} />
-        <Route path="/tester">
-          <Dashboard />
-        </Route>
-      </Switch>
-    </>
+    <div className="login-page">
+      <div>
+        <h3>Service Login</h3>
+        {/* <NavLink to="/tester">Tester</NavLink> */}
+        <Switch>
+          <Route exact path="/">
+            {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}
+          </Route>
+          <PrivateRoute exact path="/dashboard" component={Dashboard} isAuth={isAuth} />
+          <Route path="/tester">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </div>
+    </div>
   );
 }
 

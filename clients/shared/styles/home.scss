@@ -41,6 +41,12 @@ span {
   }
 }
 
+.login-page {
+  @include flex-c-c;
+  align-content: center;
+  height: 100vh;
+}
+
 .login-container {
   @include sv-card-border;
   display: block;
