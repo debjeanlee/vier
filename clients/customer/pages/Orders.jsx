@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import OrderItemCard from '../components/ui/OrderItemCard';
+import OrderItemCard from './components/ui/OrderItemCard';
 
 function Orders({ sessionData }) {
   const orders = sessionData.orders.map((el, i) => <OrderItemCard order={el} number={i} key={i} />);

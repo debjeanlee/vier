@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { faHome, faTasks } from '@fortawesome/free-solid-svg-icons';
-import FAIcon from '../../../shared/components/FAIcon';
+import FAIcon from '../../../../shared/components/FAIcon';
 
 function Topbar({ goHome, goOrders }) {
   return (

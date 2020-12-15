@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import MenuItemCard from './ui/MenuItemCard';
-import socket from '../../shared/helpers/socket';
+import socket from '../../../shared/helpers/socket';
 
 function MenuItems({ categoryHeaderPos, pageMode, menuData, cartData, sessionId, getSessionData }) {
   const [selectedMenuItem, setSelectedMenuItem] = useState('');
