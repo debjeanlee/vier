@@ -27,6 +27,16 @@ const socket = (io) => {
     socket.on('order', () => {
       socket.to('service').emit('order');
     });
+
+    socket.on('checkout', (data) => {
+      /**
+       * update session/order/table database here
+       * import models before line 1
+       * tableID will be pass in from `data.tableID`
+       * socket emit only after successful update
+       */
+      // socket.to('service').emit('checkout');
+    });
   });
 };
 
