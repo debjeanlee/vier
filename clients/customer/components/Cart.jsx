@@ -46,7 +46,7 @@ function Cart({ cartData, sessionId, getSessionData }) {
           <h5>Place Order</h5>
         </div>
         <div className="cart-total-text-div">
-          <p>Total: </p> <h5>${cartTotal}</h5>
+          <p>Total: </p> <h5>${cartTotal.toFixed(2)}</h5>
         </div>
       </div>
     </div>
