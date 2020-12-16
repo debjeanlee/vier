@@ -71,7 +71,7 @@ router.patch('/confirm/:orderNo', async (req, res) => {
     const order = await Order.findOne({ orderNo: req.params.orderNo });
     order.items = order.items.map((el) => {
       const obj = el;
-      obj.progress = 2;
+      obj.progress = 'Confirmed';
       return obj;
     });
     await order.save();
@@ -92,22 +92,25 @@ router.patch('/items/:id', async (req, res) => {
   try {
     // find order by id
     const order = await Order.findById(req.params.id);
+    order.status = 'Preparing';
     // find item
     const item = order.items.find((el) => String(el._id) === req.body.itemId);
     // check progress of item
-    if (item.progress < 5) {
-      item.progress += 1;
-      // check if all order items are complete - i.e. progress = 5, returns false if one is not 5
-      order.completed = order.items.every((el) => el.progress === 5);
-      order.save();
-      if (order.completed) {
-        res.status(200).json({ message: 'Order complete' });
-      } else {
-        res.status(200).json({ message: 'Item progress updated' });
-      }
-    } else {
-      res.status(400).json({ message: 'Order is complete' });
+    if (item.progress === 'Confirmed') {
+      item.progress = 'Preparing';
+    } else if (item.progress === 'Preparing') {
+      item.progress = 'Ready';
+    } else if (item.progress === 'Ready') {
+      item.progress = 'Served';
     }
+    // check if all items in order haven been served
+    order.completed = order.items.every((el) => el.progress === 'Served');
+    if (order.completed) {
+      order.status = 'Completed';
+    }
+    order.save();
+    console.log(order);
+    res.status(200).json({ message: 'Item progress updated' });
   } catch (error) {
     res.status(400).json({ message: 'Something went wrong' });
   }

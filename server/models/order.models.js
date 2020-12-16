@@ -11,12 +11,13 @@ const orderSchema = new Schema({
         ref: 'Dish',
       },
       quantity: { type: Number, required: true },
-      progress: { type: Number, default: 1, max: 5 },
+      progress: { type: String, default: 'Requested' },
     },
   ],
   totalCost: Number,
   orderedAt: { type: Date, default: Date.now },
   completed: { type: Boolean, default: false },
+  status: { type: String, default: 'Requested' },
 });
 
 const Order = mongoose.model('Order', orderSchema);
