@@ -12,7 +12,8 @@ function Home({ setIsAuth }) {
   }
 
   return (
-    <div>
+    <div className="login-page">
+      <h3>Service Login</h3>
       {showReg && (
         <>
           <div className="login-container">

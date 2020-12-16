@@ -48,6 +48,7 @@ span {
 
 .login-page {
   @include flex-c-c;
+  flex-direction: column;
   align-content: center;
   height: 100vh;
 }
