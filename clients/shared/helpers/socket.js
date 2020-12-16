@@ -11,6 +11,8 @@ export default (() => {
 
   const session = (sessionID) => socket.emit('session', { sessionID });
 
+  const confirmOrder = (sessionID) => socket.emit('confirm_order', { sessionID });
+
   const transmit = (type) => socket.emit(type);
 
   const receive = (type, cb) =>
@@ -21,8 +23,9 @@ export default (() => {
   return {
     connect,
     disconnect,
-    session,
     transmit,
     receive,
+    session,
+    confirmOrder,
   };
 })();

@@ -28,6 +28,15 @@ const socket = (io) => {
       socket.to('service').emit('order');
     });
 
+    socket.on('confirm_order', (data) => {
+      console.log('confirming');
+      // customer
+      socket.to(`session-${data.sessionID}`).emit('cart');
+      // service
+      socket.to('service').emit('order');
+      // kitchen
+    });
+
     socket.on('checkout', (data) => {
       /**
        * update session/order/table database here
