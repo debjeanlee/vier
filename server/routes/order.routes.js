@@ -43,12 +43,14 @@ router.patch('/new/:sessionid', async (req, res) => {
       items.push(obj);
     });
     const lastOrder = await Order.find().sort({ orderNo: -1 }).limit(1);
-    const orderNo = lastOrder[0].orderNo + 1;
+    const orderNo = lastOrder.length === 0 ? 1 : lastOrder[0].orderNo + 1;
+
     const order = new Order({
       orderNo,
       items,
       totalCost,
     });
+
     await order.save();
     session.orders.push(order._id);
     session.cart = [];
