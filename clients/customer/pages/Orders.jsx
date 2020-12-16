@@ -8,10 +8,8 @@ function Orders({ sessionData }) {
   const [total, setTotal] = useState(0);
 
   function getTotalCost() {
-    let count = 0;
-    sessionData.orders.forEach((el) => {
-      count += el.totalCost;
-    });
+    const reducer = (total, cur) => total + cur;
+    const count = sessionData.orders.map((el) => el.totalCost).reduce(reducer);
     setTotal(count.toFixed(2));
   }
 
