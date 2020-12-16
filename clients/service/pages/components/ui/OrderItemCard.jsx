@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function OrderItemCard({ itemData }) {
   return (
-    <div>
+    <div className="order-item-card">
       <p>{itemData.dish.name}</p>
       <p>quantity: {itemData.quantity}</p>
       <p>status: {itemData.progress}</p>
