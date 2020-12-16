@@ -5,7 +5,7 @@ import OrderItemCard from './OrderItemCard';
 
 function OrderColumn({ orderData }) {
   async function confirmOrder() {
-    await axiosPatch(`/api/orders/confirm/${orderData._id}`);
+    await axiosPatch(`/api/orders/confirm/${orderData.orderNo}`);
   }
 
   const orderItems = orderData.items.map((itemData) => <OrderItemCard itemData={itemData} />);
