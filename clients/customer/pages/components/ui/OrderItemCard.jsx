@@ -5,8 +5,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 function OrderItemCard({ order, number }) {
   const [open, setOpen] = useState(false);
-  const [progress, setProgress] = useState(1);
-  const [progressBar, setProgressBar] = useState(<div className="progress-bar2" />);
+  const [progressBar, setProgressBar] = useState();
 
   const orderDetails = order.items.map((el) => (
     <div className="cart-item-card" key={el._id}>
@@ -25,15 +24,14 @@ function OrderItemCard({ order, number }) {
   }
 
   function getProgress() {
-    const confirmed = order.items.every((el) => el.progress === 2);
-    if (confirmed) {
-      setProgress(2);
-      setProgressBar(<div className="progress-bar2" style={{ width: '50%' }} />);
-    }
-    const complete = order.items.every((el) => el.progress === 5);
-    if (complete) {
-      setProgress(3);
-      setProgressBar(<div className="progress-bar2" style={{ width: '100%' }} />);
+    if (order.status === 'Requested') {
+      setProgressBar(<div className="progress-bar2" />);
+    } else if (order.status === 'Confirmed') {
+      setProgressBar(<div className="progress-bar2" style={{ width: '35%' }} />)
+    } else if (order.status === 'Preparing') {
+      setProgressBar(<div className="progress-bar2" style={{ width: '65%' }} />)
+    } else if (order.status === 'Completed') {
+      setProgressBar(<div className="progress-bar2" style={{ width: '100%' }} />)
     }
   }
 
@@ -48,15 +46,8 @@ function OrderItemCard({ order, number }) {
         <FontAwesomeIcon icon={faChevronDown} className={open ? 'fa-arrow expand' : 'fa-arrow'} />
       </div>
       <div>
-        <p>
-          Status: {progress === 1 && 'Pending'}
-          {progress === 2 && 'Preparing your food..'}
-          {progress === 3 && 'Completed'}
-        </p>
-        <div className="progress2 progress-moved">
-          {/* <div className="progress-bar2" /> */}
-          {progressBar}
-        </div>
+        <p>Status: {order.status}</p>
+        <div className="progress2 progress-moved">{progressBar}</div>
         {open ? <div className="order-details-container">{orderDetails}</div> : ''}
       </div>
     </div>

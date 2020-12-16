@@ -13,7 +13,7 @@ function Dashboard() {
     res.orders.forEach((order) => {
       const obj = { orderId: order._id };
       order.items.forEach((item) => {
-        if (item.progress === 2 || item.progress === 3) {
+        if (item.progress === 'Confirmed' || item.progress === 'Preparing') {
           obj.item = item;
           arr.push(obj);
         }
@@ -29,7 +29,7 @@ function Dashboard() {
   console.log(orders);
 
   const orderCards = orders.map((el, i) => {
-    if (el.item.progress === 2 || el.item.progress === 3) {
+    if (el.item.progress === 'Confirmed' || el.item.progress === 'Preparing') {
       return <OrderCard item={el.item} key={i} orderId={el.orderId} getAllOrders={getAllOrders} />;
     }
   });

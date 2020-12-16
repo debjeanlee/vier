@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { axiosPatch } from '../../../shared/helpers/api';
 
 function OrderCard({ item, orderId, getAllOrders }) {
-  const [status, setStatus] = useState({ state: '', button: '', class: '' });
+  const [status, setStatus] = useState({ button: '', class: '' });
 
   async function updateProgress() {
     const res = await axiosPatch(`/api/orders/items/${orderId}`, {
@@ -13,15 +13,13 @@ function OrderCard({ item, orderId, getAllOrders }) {
   }
 
   function setProgress() {
-    if (item.progress === 2) {
+    if (item.progress === 'Confirmed') {
       setStatus({
-        state: 'Pending..',
         button: 'START',
         class: 'pink',
       });
     } else {
       setStatus({
-        state: 'In-Progress..',
         button: 'COMPLETE',
         class: 'green',
       });
@@ -41,7 +39,7 @@ function OrderCard({ item, orderId, getAllOrders }) {
       <div className="flexbox btn-container">
         <button className={status.class} onClick={updateProgress}>{status.button}</button>
         <div className="sm-container">
-          <p>Status: {status.state}</p>
+          <p>Status: {item.progress}</p>
         </div>
       </div>
     </div>
