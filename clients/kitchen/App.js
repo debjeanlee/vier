@@ -12,8 +12,8 @@ function App() {
       {/* TEMP SO DONT NEED TO KEEP LOGGING IN  */}
       <Dashboard />
       <div>
-        {/* <h3>Kitchen Login</h3>
-        <Switch>
+        {/* {isAuth ? '' : <h3>Kitchen Login</h3>} */}
+        {/* <Switch>
           <Route exact path="/">
             {isAuth ? <Redirect to="/dashboard" /> : <Home setIsAuth={setIsAuth} />}
           </Route>

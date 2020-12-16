@@ -99,4 +99,22 @@
   &:hover {
     cursor: pointer;
   }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin sv-green-btn {
+  background-color: $sv-green;
+  border-radius: 5px;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }

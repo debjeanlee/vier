@@ -5,7 +5,7 @@ import '../styles/home.scss';
 
 function Home({ setIsAuth }) {
   const authURL = process.env.AUTH;
-  const [showReg, setShowReg] = useState(true);
+  const [showReg, setShowReg] = useState(false);
 
   function clickHandler() {
     setShowReg(!showReg);

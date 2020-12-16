@@ -26,6 +26,11 @@ router.patch('/new/:sessionid', async (req, res) => {
     const session = await Session.findById(req.params.sessionid);
     await session.populate('cart.dish').execPopulate();
     let totalCost = 0;
+
+    if (session.cart.length === 0) {
+      return res.status(400).json({ message: 'Cart is empty' });
+    }
+
     session.cart.forEach((item) => {
       totalCost += item.dish.price * item.quantity;
     });
@@ -37,7 +42,8 @@ router.patch('/new/:sessionid', async (req, res) => {
       };
       items.push(obj);
     });
-    const orderNo = (await Order.countDocuments()) + 1;
+    const lastOrder = await Order.find().sort({ orderNo: -1 }).limit(1);
+    const orderNo = lastOrder[0].orderNo + 1;
     const order = new Order({
       orderNo,
       items,
@@ -49,7 +55,7 @@ router.patch('/new/:sessionid', async (req, res) => {
     await session.save();
     res.status(201).json({ message: 'Order has been placed' });
   } catch (err) {
-    res.status(401).json({ message: 'Something went wrong' });
+    res.status(400).json({ message: 'Something went wrong' });
   }
 });
 
@@ -78,7 +84,7 @@ router.patch('/confirm/:orderNo', async (req, res) => {
 /**
  * UPDATE ITEM PROGRESS, UPDATES ORDER STATUS IF ALL ITEMS COMPLETE
  * @method PATCH
- * @route '/api/orders/:orderId'
+ * @route '/api/orders/items/:orderId'
  * @params orderId to find order
  * @body takes itemId in body to find item
  */
@@ -102,6 +108,25 @@ router.patch('/items/:id', async (req, res) => {
     } else {
       res.status(400).json({ message: 'Order is complete' });
     }
+  } catch (error) {
+    res.status(400).json({ message: 'Something went wrong' });
+  }
+});
+
+/**
+ * DELETE ORDER
+ * @method DELETE
+ * @route '/api/orders/:orderId/:sessionId'
+ * @params orderId sessionId
+ * @description delete order by id, remove from session
+ */
+router.delete('/:orderId/:sessionId', async (req, res) => {
+  try {
+    await Order.findByIdAndDelete(req.params.orderId);
+    await Session.findByIdAndUpdate(req.params.sessionId, {
+      $pull: { orders: req.params.orderId },
+    });
+    res.status(200).json({ message: 'Order deleted' });
   } catch (error) {
     res.status(400).json({ message: 'Something went wrong' });
   }
