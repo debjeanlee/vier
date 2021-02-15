@@ -11,6 +11,7 @@ Selling points:
 - No need to download extra app
 - Reduces service costs
 - Minimal extra hardware required on restaurant fronts
+- Environmentally friendly with less paper wastage on docket tickets
 
 ## User Story
 
@@ -34,21 +35,50 @@ Selling points:
 
 - Placed orders update service side immediately
 
+##### Service Crew Dashboard
+
+![servicedb](/readme/service.png)
+
+- Service crew dashboard
+
+![service](/readme/service1.png)
+
+- Expanded table view of service dashboard
+
+##### Kitchen Crew Dashboard
+
+![kitchen](/readme/kitchen.png)
+
+- Kitchen crew dashboard
+
 ## Team
 
 Jonas - Team Leader / Frontend Developer
 
+- led team of 3 and developed customer facing menus & service crew dashboard
+
 Eskaine - Tech Lead / Git Master
 
-Deborah - Backend Developer
+- Git master, implemented socket.io and setup project with webpack
+
+Deborah - Backend Developer / Frontend Developer
+
+- Responsible for server side logic on backend
+- Assisted with frontend development for menus and kitchen dashboards
 
 ## TechStack
 
-- MERN
+- MongoDB
+- ExpressJS
+- ReactJS
+- NodeJS
+- SASS
 - Socket.IO
-- React Router
 - Sass
 - Webpack
 - ESLint
 
 ## Future Improvements
+
+- complete socket.io integration
+- improve design of service and kitchen deshboards
