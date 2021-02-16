@@ -81,4 +81,4 @@ Deborah - Backend Developer / Frontend Developer
 ## Future Improvements
 
 - complete socket.io integration
-- improve design of service and kitchen deshboards
+- improve design of service and kitchen dashboards
